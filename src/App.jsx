@@ -39,35 +39,42 @@ export default function App() {
 
   return (
     <div className="font-sans text-black bg-white min-h-screen selection:bg-black selection:text-white antialiased overflow-x-hidden">
-      {/* Navigatie */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 border-b ${isScrolled ? 'bg-white border-black/10 py-3' : 'bg-black text-white border-transparent py-5'}`}>
+      {/* Navigatie - Fixed to White Text */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 border-b ${isScrolled ? 'bg-black/90 backdrop-blur-md border-white/10 py-3' : 'bg-transparent border-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <div className="text-xl md:text-2xl font-black tracking-tighter uppercase cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            La Pizza <span className={isScrolled ? "text-gray-400" : "text-gray-500"}>di Sabi</span>
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+            {/* Logo Placeholder - Place logo.png in your public folder */}
+            <img src="/logo.png" alt="Logo" className="h-10 md:h-12 w-auto object-contain" onError={(e) => e.target.style.display='none'} />
+            <div className="text-xl md:text-2xl font-black tracking-tighter uppercase text-white">
+              La Pizza <span className="text-gray-400">di Sabi</span>
+            </div>
           </div>
-          <div className="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-widest uppercase">
+          
+          <div className="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-widest uppercase text-white">
             <button onClick={() => scrollToSection('craft')} className="hover:opacity-50">Ambacht</button>
             <button onClick={() => scrollToSection('menu')} className="hover:opacity-50">Menu</button>
-            <button onClick={() => scrollToSection('media')} className="hover:opacity-50">Live Cooking</button>
+            <button onClick={() => scrollToSection('media')} className="hover:opacity-50">Kijk hier</button>
             <button onClick={() => scrollToSection('pricing')} className="hover:opacity-50">Pakketten</button>
-            <button onClick={() => scrollToSection('contact')} className={`px-6 py-2 border-2 font-black transition-all ${isScrolled ? 'bg-black text-white' : 'bg-white text-black'}`}>Offerte</button>
+            <button onClick={() => scrollToSection('contact')} className="px-6 py-2 border-2 border-white bg-white text-black font-black transition-all hover:bg-transparent hover:text-white">Offerte</button>
           </div>
-          <button className="lg:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          
+          <button className="lg:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
           </button>
         </div>
+        
         {mobileMenuOpen && (
-          <div className="absolute top-full left-0 w-full bg-white text-black p-8 flex flex-col space-y-6 lg:hidden border-b-2 border-black">
+          <div className="absolute top-full left-0 w-full bg-black text-white p-8 flex flex-col space-y-6 lg:hidden border-b-2 border-white/10">
             <button onClick={() => scrollToSection('craft')} className="text-2xl font-black uppercase text-left">Ambacht</button>
             <button onClick={() => scrollToSection('menu')} className="text-2xl font-black uppercase text-left">Menu</button>
-            <button onClick={() => scrollToSection('media')} className="text-2xl font-black uppercase text-left">Live Cooking</button>
+            <button onClick={() => scrollToSection('media')} className="text-2xl font-black uppercase text-left">Kijk hier</button>
             <button onClick={() => scrollToSection('pricing')} className="text-2xl font-black uppercase text-left">Pakketten</button>
           </div>
         )}
       </nav>
 
-      {/* Hero Sectie */}
-      <section className="relative h-[85vh] md:h-screen flex items-center justify-center bg-black pt-10">
+      {/* Hero Sectie - Centered Button */}
+      <section className="relative h-screen flex items-center justify-center bg-black pt-10">
         <div className="absolute inset-0">
           <img src={hero.image} className="w-full h-full object-cover opacity-50" alt="Pizza Hero" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
@@ -76,22 +83,26 @@ export default function App() {
           <div className="inline-flex items-center gap-2 bg-white text-black px-3 py-1 uppercase tracking-widest font-bold text-[10px] mb-6">
             <Flame size={14} /> <span>Artisanaal bakken op locatie</span>
           </div>
-          <h1 className="text-4xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[1.1] mb-6 break-words">{hero.title}</h1>
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[1.1] mb-6">{hero.title}</h1>
           <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">{hero.subtitle}</p>
-          <button onClick={() => scrollToSection('contact')} className="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase tracking-widest flex items-center justify-center gap-3 text-lg hover:bg-gray-200 transition-colors">
-            Vraag Offerte Aan <ArrowRight size={24} />
-          </button>
+          
+          {/* Centered Button Container */}
+          <div className="flex justify-center">
+            <button onClick={() => scrollToSection('contact')} className="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase tracking-widest flex items-center justify-center gap-3 text-lg hover:bg-gray-200 transition-colors">
+              Vraag Offerte Aan <ArrowRight size={24} />
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Ambacht Sectie */}
       <section id="craft" className="py-20 bg-white px-6">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          <div className="order-2 lg:order-1">
+          <div>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 leading-tight">{craft.title}</h2>
             <p className="text-lg text-gray-600 font-medium leading-relaxed">{craft.description}</p>
           </div>
-          <div className="order-1 lg:order-2 relative group">
+          <div className="relative group">
             <div className="absolute inset-0 bg-black translate-x-3 translate-y-3"></div>
             <img src={craft.image} className="relative z-10 w-full aspect-[4/3] object-cover border-4 border-black" alt="Ambacht" />
           </div>
@@ -118,9 +129,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* Video Sectie */}
+      {/* Video Sectie - Renamed to "Kijk hier" */}
       <section id="media" className="py-20 bg-white px-6">
-        <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 tracking-tighter">Live Cooking</h2>
+        <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 tracking-tighter">Kijk hier</h2>
         <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scroll-smooth hide-scrollbar">
           {reels.map((item, i) => (
             <div key={i} className="relative flex-none w-[75vw] md:w-[320px] aspect-[9/16] bg-black snap-center overflow-hidden border-4 border-black shadow-xl">
@@ -130,7 +141,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pakketten (CMS Gestuurd) */}
+      {/* Pakketten */}
       <section id="pricing" className="py-20 bg-gray-50 px-6 border-y border-black/5">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-center text-4xl md:text-6xl font-black uppercase mb-16 tracking-tighter">Pakketten</h2>
