@@ -10,35 +10,32 @@ collections:
     label: "Pages"
     files:
       - file: "public/content/data.json"
-        label: "Home Page"
+        label: "Website Content"
         name: "home"
         fields:
           - label: "Hero Sectie"
             name: "hero"
             widget: "object"
             fields:
-              - {label: "Titel", name: "title", widget: "string"}
-              - {label: "Subtitel", name: "subtitle", widget: "text"}
+              - {label: "Hoofdtitel", name: "title", widget: "string"}
+              - {label: "Subtekst", name: "subtitle", widget: "text"}
               - {label: "Achtergrond Afbeelding", name: "image", widget: "image"}
 
-          - label: "Ons Ambacht Sectie"
+          - label: "Ons Ambacht"
             name: "craft"
             widget: "object"
             fields:
-              - {label: "Afbeelding", name: "image", widget: "image"}
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Hoofdtekst", name: "description", widget: "text"}
+              - {label: "Highlight 1 Titel", name: "h1Title", widget: "string"}
+              - {label: "Highlight 1 Tekst", name: "h1Text", widget: "text"}
+              - {label: "Highlight 2 Titel", name: "h2Title", widget: "string"}
+              - {label: "Highlight 2 Tekst", name: "h2Text", widget: "text"}
+              - {label: "Grote Afbeelding", name: "image", widget: "image"}
 
-          - label: "Pizza Menu"
-            name: "menu"
-            widget: "list"
-            summary: '{{fields.name}}'
-            fields:
-              - {label: "Naam", name: "name", widget: "string"}
-              - {label: "Beschrijving", name: "desc", widget: "text"}
-              - {label: "Prijs (optioneel)", name: "price", widget: "string", required: false}
-
-          - label: "Live Cooking Media"
+          - label: "Video Reels (Live Cooking)"
             name: "media"
             widget: "list"
             fields:
-              - {label: "Omslagafbeelding", name: "image", widget: "image"}
-              - {label: "Video Link (optioneel)", name: "videoUrl", widget: "string", required: false}
+              - {label: "Video Bestand (Upload .mp4)", name: "videoFile", widget: "file"}
+              - {label: "Omslagafbeelding (Poster)", name: "poster", widget: "image"}
