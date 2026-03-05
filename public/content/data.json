@@ -2,20 +2,42 @@
   "hero": {
     "title": "Wij brengen de pizzeria naar JOU",
     "subtitle": "Ervaar de ware, vurige smaak van Napels op jouw evenement. Vers deeg, authentieke ingrediënten, live bereid in onze mobiele houtoven.",
-    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591"
+    "image": "/images/605526368_122096788677187559_5645787321765045757_n.jpg"
   },
   "craft": {
     "title": "Tijd is ons belangrijkste ingrediënt",
     "description": "Een perfecte Napolitaanse pizza begint lang voordat het vuur wordt aangestoken. Wij geloven in de kracht van geduld en pure, onbewerkte ingrediënten.",
-    "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"
+    "image": "/images/605526368_122096788677187559_5645787321765045757_n.jpg"
   },
   "pricing": [
     {
       "title": "The Classic",
       "price": "15",
       "description": "De essentiële selectie voor een authentieke ervaring.",
-      "features": ["2 uur live on-site bakken", "3 Napolitaanse klassiekers", "Papieren borden & servetten"]
+      "features": [
+        "2 uur live on-site bakken",
+        "3 Napolitaanse klassiekers",
+        "Papieren borden & servetten"
+      ],
+      "featured": false
+    },
+    {
+      "featured": true,
+      "title": "The Test",
+      "price": "123",
+      "description": "Test"
+    },
+    {
+      "featured": false,
+      "title": "The Fixer",
+      "description": "Test",
+      "price": "123"
     }
   ],
-  "reels": []
+  "reels": [
+    {
+      "video": "/images/aqmmpyyux2idhnggmox1vk-redl45_p3iddl559whn0qgf3z47bdzeeabnjq7chyd4m0mldxysvced2ehzx-ywdvoa3a2eykuxjzn3o.mp4",
+      "poster": "/images/605625354_122096787831187559_8883612749894376385_n.jpg"
+    }
+  ]
 }
