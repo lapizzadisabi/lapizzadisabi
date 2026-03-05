@@ -27,16 +27,25 @@ collections:
             fields:
               - {label: "Sectie Titel", name: "title", widget: "string"}
               - {label: "Algemene Tekst", name: "description", widget: "text"}
-              - {label: "Feature 1 Titel", name: "f1Title", widget: "string"}
-              - {label: "Feature 1 Tekst", name: "f1Text", widget: "text"}
-              - {label: "Feature 2 Titel", name: "f2Title", widget: "string"}
-              - {label: "Feature 2 Tekst", name: "f2Text", widget: "text"}
               - {label: "Grote Afbeelding", name: "image", widget: "image"}
+
+          - label: "Pakketten"
+            name: "pricing"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Subtekst", name: "description", widget: "string"}
+              - {label: "Prijs vanaf", name: "price", widget: "string"}
+              - {label: "Is dit de populairste?", name: "featured", widget: "boolean", default: false}
+              - label: "Kenmerken (Features)"
+                name: "features"
+                widget: "list"
+                field: {label: "Kenmerk", name: "text", widget: "string"}
 
           - label: "Live Cooking Reels (Videos)"
             name: "reels"
             widget: "list"
-            summary: "Video {{index}}"
             fields:
               - {label: "Video Bestand (.mp4 upload)", name: "video", widget: "file"}
               - {label: "Poster Afbeelding (stilstaand beeld)", name: "poster", widget: "image"}
