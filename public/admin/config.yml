@@ -1,18 +1,18 @@
 backend:
   name: git-gateway
-  branch: main # Branch to update (optional; defaults to master)
+  branch: main
 
-media_folder: "public/images" # Folder where uploaded images go
-public_folder: "/images" # The URL path for those images
+media_folder: "public/images"
+public_folder: "/images"
 
 collections:
   - name: "pages"
     label: "Pages"
     files:
       - file: "public/content/data.json"
-        label: "Website Content"
+        label: "Home Page"
         name: "home"
         fields:
           - {label: "Hero Title", name: "heroTitle", widget: "string"}
           - {label: "Hero Subtitle", name: "heroSubtitle", widget: "text"}
-          - {label: "Hero Background Image", name: "heroImage", widget: "image"}
+          - {label: "Hero Image", name: "heroImage", widget: "image"}
