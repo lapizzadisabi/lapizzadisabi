@@ -375,5 +375,3 @@ export default function App() {
     </div>
   );
 }
-
-What would be the cheapest way to run this website? I have a strato wordpress hosting package and a domain name
