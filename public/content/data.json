@@ -1,22 +1,21 @@
 {
   "hero": {
-    "title": "La Pizza di Sabi",
-    "subtitle": "Wij brengen de ware, vurige smaak van Napels naar jouw evenement.",
-    "image": "/images/605526368_122096788677187559_5645787321765045757_n.jpg"
+    "title": "Wij brengen de pizzeria naar JOU",
+    "subtitle": "Ervaar de ware, vurige smaak van Napels op jouw evenement. Vers deeg, authentieke ingrediënten, live bereid in onze mobiele houtoven.",
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591"
   },
   "craft": {
     "title": "Tijd is ons belangrijkste ingrediënt",
-    "description": "Een perfecte pizza begint met geduld.",
-    "f1Title": "48-Uur Deeg",
-    "f1Text": "Langzaam rijpingsproces voor de beste smaak.",
-    "f2Title": "Echte Mozzarella",
-    "f2Text": "Verse Fior di Latte, elke ochtend geleverd.",
-    "image": "/images/605526368_122096788677187559_5645787321765045757_n.jpg"
+    "description": "Een perfecte Napolitaanse pizza begint lang voordat het vuur wordt aangestoken. Wij geloven in de kracht van geduld en pure, onbewerkte ingrediënten.",
+    "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"
   },
-  "reels": [
+  "pricing": [
     {
-      "video": "/images/aqmmpyyux2idhnggmox1vk-redl45_p3iddl559whn0qgf3z47bdzeeabnjq7chyd4m0mldxysvced2ehzx-ywdvoa3a2eykuxjzn3o.mp4",
-      "poster": "/images/605625354_122096787831187559_8883612749894376385_n.jpg"
+      "title": "The Classic",
+      "price": "15",
+      "description": "De essentiële selectie voor een authentieke ervaring.",
+      "features": ["2 uur live on-site bakken", "3 Napolitaanse klassiekers", "Papieren borden & servetten"]
     }
-  ]
+  ],
+  "reels": []
 }

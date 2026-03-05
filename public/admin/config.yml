@@ -10,7 +10,7 @@ collections:
     label: "Pagina's"
     files:
       - file: "public/content/data.json"
-        label: "Home Pagina Content"
+        label: "Home Pagina"
         name: "home"
         fields:
           - label: "Hero Sectie"
@@ -25,27 +25,27 @@ collections:
             name: "craft"
             widget: "object"
             fields:
-              - {label: "Sectie Titel", name: "title", widget: "string"}
-              - {label: "Algemene Tekst", name: "description", widget: "text"}
-              - {label: "Grote Afbeelding", name: "image", widget: "image"}
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Beschrijving", name: "description", widget: "text"}
+              - {label: "Afbeelding", name: "image", widget: "image"}
 
-          - label: "Pakketten"
+          - label: "Pakketten (Pricing)"
             name: "pricing"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - {label: "Titel", name: "title", widget: "string"}
-              - {label: "Subtekst", name: "description", widget: "string"}
-              - {label: "Prijs vanaf", name: "price", widget: "string"}
-              - {label: "Is dit de populairste?", name: "featured", widget: "boolean", default: false}
-              - label: "Kenmerken (Features)"
+              - {label: "Pakket Naam", name: "title", widget: "string"}
+              - {label: "Korte omschrijving", name: "description", widget: "string"}
+              - {label: "Prijs (alleen het getal)", name: "price", widget: "string"}
+              - {label: "Populairste pakket?", name: "featured", widget: "boolean", default: false}
+              - label: "Kenmerken"
                 name: "features"
                 widget: "list"
-                field: {label: "Kenmerk", name: "text", widget: "string"}
+                field: {label: "Punt", name: "text", widget: "string"}
 
           - label: "Live Cooking Reels (Videos)"
             name: "reels"
             widget: "list"
             fields:
-              - {label: "Video Bestand (.mp4 upload)", name: "video", widget: "file"}
-              - {label: "Poster Afbeelding (stilstaand beeld)", name: "poster", widget: "image"}
+              - {label: "Video (.mp4 upload)", name: "video", widget: "file"}
+              - {label: "Poster Beeld (foto)", name: "poster", widget: "image"}
