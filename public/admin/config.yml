@@ -43,12 +43,15 @@ collections:
                 widget: "list"
                 field: {label: "Punt", name: "text", widget: "string"}
 
-          - label: "Live Cooking Reels (Videos)"
-            name: "reels"
+          - label: "Klantbeoordelingen (Reviews)"
+            name: "testimonials"
             widget: "list"
+            summary: "Review van {{fields.name}}"
             fields:
-              - {label: "Video (.mp4 upload)", name: "video", widget: "file"}
-              - {label: "Poster Beeld (foto)", name: "poster", widget: "image"}
+              - {label: "Naam Klant", name: "name", widget: "string"}
+              - {label: "Review Tekst", name: "review", widget: "text"}
+              - {label: "Profielfoto", name: "image", widget: "image"}
+
           - label: "Kijk hier (Videos)"
             name: "reels"
             widget: "list"

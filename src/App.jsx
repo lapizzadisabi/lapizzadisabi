@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Menu as MenuIcon, X, MapPin, Calendar, Users, 
-  Play, Flame, Check, ArrowRight, Instagram
+  Play, Flame, Check, ArrowRight, Star
 } from 'lucide-react';
 
 export default function App() {
@@ -36,14 +36,14 @@ export default function App() {
   const craft = cmsData?.craft || { title: "Ons Ambacht", description: "", image: "" };
   const packages = cmsData?.pricing || [];
   const reels = cmsData?.reels || [];
+  const testimonials = cmsData?.testimonials || [];
 
   return (
     <div className="font-sans text-black bg-white min-h-screen selection:bg-black selection:text-white antialiased overflow-x-hidden">
-      {/* Navigatie - Fixed to White Text */}
+      {/* Navigatie */}
       <nav className={`fixed w-full z-50 transition-all duration-300 border-b ${isScrolled ? 'bg-black/90 backdrop-blur-md border-white/10 py-3' : 'bg-transparent border-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            {/* Logo Placeholder - Place logo.png in your public folder */}
             <img src="/logo.png" alt="Logo" className="h-10 md:h-12 w-auto object-contain" onError={(e) => e.target.style.display='none'} />
             <div className="text-xl md:text-2xl font-black tracking-tighter uppercase text-white">
               La Pizza <span className="text-gray-400">di Sabi</span>
@@ -73,7 +73,7 @@ export default function App() {
         )}
       </nav>
 
-      {/* Hero Sectie - Centered Button */}
+      {/* Hero Sectie */}
       <section className="relative h-screen flex items-center justify-center bg-black pt-10">
         <div className="absolute inset-0">
           <img src={hero.image} className="w-full h-full object-cover opacity-50" alt="Pizza Hero" />
@@ -86,7 +86,6 @@ export default function App() {
           <h1 className="text-4xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-[1.1] mb-6">{hero.title}</h1>
           <p className="text-base md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">{hero.subtitle}</p>
           
-          {/* Centered Button Container */}
           <div className="flex justify-center">
             <button onClick={() => scrollToSection('contact')} className="w-full sm:w-auto px-10 py-5 bg-white text-black font-black uppercase tracking-widest flex items-center justify-center gap-3 text-lg hover:bg-gray-200 transition-colors">
               Vraag Offerte Aan <ArrowRight size={24} />
@@ -129,7 +128,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Video Sectie - Renamed to "Kijk hier" */}
+      {/* Kijk hier (Videos) */}
       <section id="media" className="py-20 bg-white px-6">
         <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 tracking-tighter">Kijk hier</h2>
         <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scroll-smooth hide-scrollbar">
@@ -166,12 +165,81 @@ export default function App() {
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-24 bg-white px-6">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-5xl md:text-7xl font-black uppercase mb-8 tracking-tighter leading-none">Boek de <br/>Houtoven</h2>
-          <p className="text-lg text-gray-600 mb-12">Neem direct contact op voor een persoonlijke offerte binnen 24 uur.</p>
-          <a href="mailto:ciao@lapizzadisabi.nl" className="inline-block bg-black text-white px-12 py-6 font-black uppercase tracking-widest text-xl hover:scale-105 transition-transform shadow-[10px_10px_0px_0px_rgba(0,0,0,0.1)]">Stuur een Mail</a>
+      {/* Testimonials */}
+      <section className="py-20 bg-white px-6">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-center text-4xl md:text-6xl font-black uppercase mb-16 tracking-tighter">Wat klanten zeggen</h2>
+          <div className="grid md:grid-cols-2 gap-12">
+            {testimonials.map((review, i) => (
+              <div key={i} className="flex flex-col items-center text-center p-8 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                <img src={review.image} alt={review.name} className="w-24 h-24 rounded-full object-cover border-4 border-black mb-6" />
+                <div className="flex gap-1 mb-6">
+                  {[...Array(5)].map((_, idx) => (
+                    <Star key={idx} className="w-6 h-6 fill-current text-black" />
+                  ))}
+                </div>
+                <p className="text-lg md:text-xl font-medium mb-6 italic">"{review.review}"</p>
+                <h4 className="text-sm font-black uppercase tracking-widest">- {review.name}</h4>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Formulier */}
+      <section id="contact" className="py-24 bg-gray-50 px-6 border-t border-black/10">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">Boek de Houtoven</h2>
+            <p className="text-lg text-gray-600">Vul het formulier in voor een op maat gemaakte offerte.</p>
+          </div>
+
+          <form 
+            name="offerte" 
+            method="POST" 
+            data-netlify="true" 
+            className="bg-white p-8 md:p-12 border-4 border-black shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-6"
+          >
+            {/* Required hidden input for Netlify routing */}
+            <input type="hidden" name="form-name" value="offerte" />
+            
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-black uppercase tracking-widest">Naam</label>
+                <input required type="text" name="naam" className="w-full p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors" placeholder="Jouw volledige naam" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-black uppercase tracking-widest">E-mail of Telefoon</label>
+                <input required type="text" name="contactinfo" className="w-full p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors" placeholder="Hoe kunnen we je bereiken?" />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-black uppercase tracking-widest flex items-center gap-2"><Calendar size={14}/> Datum Evenement</label>
+                <input required type="date" name="datum" className="w-full p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors" />
+              </div>
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-black uppercase tracking-widest flex items-center gap-2"><Users size={14}/> Aantal Personen</label>
+                <select required name="aantal" className="w-full p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors bg-white">
+                  <option value="" disabled selected>Kies het aantal gasten</option>
+                  <option value="0-10">0 - 10 personen</option>
+                  <option value="10-20">10 - 20 personen</option>
+                  <option value="20-30">20 - 30 personen</option>
+                  <option value="30+">30+ personen</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-black uppercase tracking-widest">Extra details of bericht</label>
+              <textarea required name="bericht" rows="4" className="w-full p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors resize-none" placeholder="Vertel ons meer over het evenement of dieetwensen..."></textarea>
+            </div>
+
+            <button type="submit" className="w-full py-6 mt-4 bg-black text-white font-black uppercase tracking-widest flex items-center justify-center gap-3 hover:bg-gray-800 transition-colors">
+              Verstuur Aanvraag <ArrowRight size={20} />
+            </button>
+          </form>
         </div>
       </section>
 
