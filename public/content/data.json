@@ -13,5 +13,10 @@
     "f2Text": "Verse Fior di Latte, elke ochtend geleverd.",
     "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&q=80&w=1000"
   },
-  "reels": []
+  "reels": [
+    {
+      "video": "/images/aqmmpyyux2idhnggmox1vk-redl45_p3iddl559whn0qgf3z47bdzeeabnjq7chyd4m0mldxysvced2ehzx-ywdvoa3a2eykuxjzn3o.mp4",
+      "poster": "/images/605625354_122096787831187559_8883612749894376385_n.jpg"
+    }
+  ]
 }
