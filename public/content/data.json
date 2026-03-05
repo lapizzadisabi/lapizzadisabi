@@ -1,5 +1,17 @@
 {
-  "heroTitle": "La Pizza di Sabi",
-  "heroSubtitle": "De authentieke, vurige smaak van Napels op jouw evenement. Vers deeg en live bereid.",
-  "heroImage": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=2000"
+  "hero": {
+    "title": "La Pizza di Sabi",
+    "subtitle": "Wij brengen de ware, vurige smaak van Napels naar jouw evenement.",
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=2000"
+  },
+  "craft": {
+    "title": "Tijd is ons belangrijkste ingrediënt",
+    "description": "Een perfecte pizza begint met geduld.",
+    "f1Title": "48-Uur Deeg",
+    "f1Text": "Langzaam rijpingsproces voor de beste smaak.",
+    "f2Title": "Echte Mozzarella",
+    "f2Text": "Verse Fior di Latte, elke ochtend geleverd.",
+    "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?auto=format&fit=crop&q=80&w=1000"
+  },
+  "reels": []
 }

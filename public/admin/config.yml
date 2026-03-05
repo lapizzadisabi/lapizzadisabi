@@ -7,10 +7,10 @@ public_folder: "/images"
 
 collections:
   - name: "pages"
-    label: "Pages"
+    label: "Pagina's"
     files:
       - file: "public/content/data.json"
-        label: "Website Content"
+        label: "Home Pagina Content"
         name: "home"
         fields:
           - label: "Hero Sectie"
@@ -25,17 +25,18 @@ collections:
             name: "craft"
             widget: "object"
             fields:
-              - {label: "Titel", name: "title", widget: "string"}
-              - {label: "Hoofdtekst", name: "description", widget: "text"}
-              - {label: "Highlight 1 Titel", name: "h1Title", widget: "string"}
-              - {label: "Highlight 1 Tekst", name: "h1Text", widget: "text"}
-              - {label: "Highlight 2 Titel", name: "h2Title", widget: "string"}
-              - {label: "Highlight 2 Tekst", name: "h2Text", widget: "text"}
+              - {label: "Sectie Titel", name: "title", widget: "string"}
+              - {label: "Algemene Tekst", name: "description", widget: "text"}
+              - {label: "Feature 1 Titel", name: "f1Title", widget: "string"}
+              - {label: "Feature 1 Tekst", name: "f1Text", widget: "text"}
+              - {label: "Feature 2 Titel", name: "f2Title", widget: "string"}
+              - {label: "Feature 2 Tekst", name: "f2Text", widget: "text"}
               - {label: "Grote Afbeelding", name: "image", widget: "image"}
 
-          - label: "Video Reels (Live Cooking)"
-            name: "media"
+          - label: "Live Cooking Reels (Videos)"
+            name: "reels"
             widget: "list"
+            summary: "Video {{index}}"
             fields:
-              - {label: "Video Bestand (Upload .mp4)", name: "videoFile", widget: "file"}
-              - {label: "Omslagafbeelding (Poster)", name: "poster", widget: "image"}
+              - {label: "Video Bestand (.mp4 upload)", name: "video", widget: "file"}
+              - {label: "Poster Afbeelding (stilstaand beeld)", name: "poster", widget: "image"}
