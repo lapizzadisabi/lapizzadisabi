@@ -13,6 +13,32 @@ collections:
         label: "Home Page"
         name: "home"
         fields:
-          - {label: "Hero Title", name: "heroTitle", widget: "string"}
-          - {label: "Hero Subtitle", name: "heroSubtitle", widget: "text"}
-          - {label: "Hero Image", name: "heroImage", widget: "image"}
+          - label: "Hero Sectie"
+            name: "hero"
+            widget: "object"
+            fields:
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Subtitel", name: "subtitle", widget: "text"}
+              - {label: "Achtergrond Afbeelding", name: "image", widget: "image"}
+
+          - label: "Ons Ambacht Sectie"
+            name: "craft"
+            widget: "object"
+            fields:
+              - {label: "Afbeelding", name: "image", widget: "image"}
+
+          - label: "Pizza Menu"
+            name: "menu"
+            widget: "list"
+            summary: '{{fields.name}}'
+            fields:
+              - {label: "Naam", name: "name", widget: "string"}
+              - {label: "Beschrijving", name: "desc", widget: "text"}
+              - {label: "Prijs (optioneel)", name: "price", widget: "string", required: false}
+
+          - label: "Live Cooking Media"
+            name: "media"
+            widget: "list"
+            fields:
+              - {label: "Omslagafbeelding", name: "image", widget: "image"}
+              - {label: "Video Link (optioneel)", name: "videoUrl", widget: "string", required: false}
