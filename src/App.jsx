@@ -35,7 +35,13 @@ export default function App() {
   const hero = cmsData?.hero || { title: "La Pizza di Sabi", subtitle: "Authentiek Napels.", image: "" };
   const craft = cmsData?.craft || { title: "Ons Ambacht", description: "", image: "" };
   const packages = cmsData?.pricing || [];
-  const reels = cmsData?.reels || [];
+  // If the CMS is empty, show a fallback placeholder video so it never looks broken
+  const reels = cmsData?.reels && cmsData.reels.length > 0 ? cmsData.reels : [
+    {
+      video: "https://cdn.pixabay.com/video/2020/04/29/37597-415510619_large.mp4",
+      poster: "https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600&h=1066"
+    }
+  ];
   const testimonials = cmsData?.testimonials || [];
 
   return (
@@ -53,7 +59,7 @@ export default function App() {
           <div className="hidden lg:flex items-center space-x-8 font-bold text-xs tracking-widest uppercase text-white">
             <button onClick={() => scrollToSection('craft')} className="hover:opacity-50">Ambacht</button>
             <button onClick={() => scrollToSection('menu')} className="hover:opacity-50">Menu</button>
-            <button onClick={() => scrollToSection('media')} className="hover:opacity-50">Kijk hier</button>
+            <button onClick={() => scrollToSection('media')} className="hover:opacity-50">Verwachtingen</button>
             <button onClick={() => scrollToSection('pricing')} className="hover:opacity-50">Pakketten</button>
             <button onClick={() => scrollToSection('contact')} className="px-6 py-2 border-2 border-white bg-white text-black font-black transition-all hover:bg-transparent hover:text-white">Offerte</button>
           </div>
@@ -67,7 +73,7 @@ export default function App() {
           <div className="absolute top-full left-0 w-full bg-black text-white p-8 flex flex-col space-y-6 lg:hidden border-b-2 border-white/10">
             <button onClick={() => scrollToSection('craft')} className="text-2xl font-black uppercase text-left">Ambacht</button>
             <button onClick={() => scrollToSection('menu')} className="text-2xl font-black uppercase text-left">Menu</button>
-            <button onClick={() => scrollToSection('media')} className="text-2xl font-black uppercase text-left">Kijk hier</button>
+            <button onClick={() => scrollToSection('media')} className="text-2xl font-black uppercase text-left">Verwachtingen</button>
             <button onClick={() => scrollToSection('pricing')} className="text-2xl font-black uppercase text-left">Pakketten</button>
           </div>
         )}
@@ -128,15 +134,29 @@ export default function App() {
         </div>
       </section>
 
-      {/* Kijk hier (Videos) */}
-      <section id="media" className="py-20 bg-white px-6">
-        <h2 className="text-4xl md:text-6xl font-black uppercase mb-12 tracking-tighter">Kijk hier</h2>
-        <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scroll-smooth hide-scrollbar">
-          {reels.map((item, i) => (
-            <div key={i} className="relative flex-none w-[75vw] md:w-[320px] aspect-[9/16] bg-black snap-center overflow-hidden border-4 border-black shadow-xl">
-              <video src={item.video} poster={item.poster} controls className="w-full h-full object-cover" playsInline loop muted />
-            </div>
-          ))}
+     {/* Wat mag je verwachten? (Videos) */}
+      <section id="media" className="py-24 bg-white px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Wat mag je verwachten?</h2>
+          </div>
+          
+          {/* Layout: Swipeable on mobile, perfectly centered grid on PC */}
+          <div className="flex gap-6 overflow-x-auto md:justify-center md:flex-wrap pb-12 pt-4 snap-x snap-mandatory scroll-smooth hide-scrollbar">
+            {reels.map((item, i) => (
+              <div key={i} className="relative flex-none w-[75vw] md:w-[320px] aspect-[9/16] bg-black snap-center overflow-hidden rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-gray-100 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.25)]">
+                <video 
+                  src={item.video} 
+                  poster={item.poster} 
+                  controls 
+                  className="w-full h-full object-cover" 
+                  playsInline 
+                  loop 
+                  muted 
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -190,7 +210,7 @@ export default function App() {
       <section id="contact" className="py-24 bg-gray-50 px-6 border-t border-black/10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">Boek de Houtoven</h2>
+            <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">Boek uw live chef</h2>
             <p className="text-lg text-gray-600">Vul het formulier in voor een op maat gemaakte offerte.</p>
           </div>
 
