@@ -1,13 +1,13 @@
 {
   "hero": {
-    "title": "Wij brengen de pizzeria naar JOU",
+    "title": "La Pizza di Sabi",
     "subtitle": "Ervaar de ware, vurige smaak van Napels op jouw evenement. Vers deeg, authentieke ingrediënten, live bereid in onze mobiele houtoven.",
-    "image": "/images/605526368_122096788677187559_5645787321765045757_n.jpg"
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591"
   },
   "craft": {
     "title": "Tijd is ons belangrijkste ingrediënt",
     "description": "Een perfecte Napolitaanse pizza begint lang voordat het vuur wordt aangestoken. Wij geloven in de kracht van geduld en pure, onbewerkte ingrediënten.",
-    "image": "/images/605526368_122096788677187559_5645787321765045757_n.jpg"
+    "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"
   },
   "pricing": [
     {
@@ -22,19 +22,26 @@
       "featured": false
     },
     {
-      "featured": true,
-      "title": "The Test",
-      "description": "Tester",
-      "price": "19",
+      "title": "Napoli Experience",
+      "price": "22",
+      "description": "De complete beleving inclusief antipasti.",
       "features": [
-        "BEST"
-      ]
+        "3 uur live on-site bakken",
+        "Antipasti planken vooraf",
+        "Keuze uit 5 premium pizza's"
+      ],
+      "featured": true
     },
     {
-      "featured": false,
-      "title": "The Fire",
-      "price": "22",
-      "description": "test"
+      "title": "Premium Feast",
+      "price": "35",
+      "description": "Onbeperkt genieten met exclusieve toppings.",
+      "features": [
+        "Tot 4 uur onbeperkt pizza eten",
+        "Inclusief truffel en burrata",
+        "Huisgemaakte desserts"
+      ],
+      "featured": false
     }
   ],
   "testimonials": [
@@ -51,8 +58,16 @@
   ],
   "reels": [
     {
-      "video": "/images/aqmmpyyux2idhnggmox1vk-redl45_p3iddl559whn0qgf3z47bdzeeabnjq7chyd4m0mldxysvced2ehzx-ywdvoa3a2eykuxjzn3o.mp4",
-      "poster": "/images/605625354_122096787831187559_8883612749894376385_n.jpg"
+      "video": "https://cdn.pixabay.com/video/2020/04/29/37597-415510619_large.mp4",
+      "poster": "https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600&h=1066"
+    },
+    {
+      "video": "https://cdn.pixabay.com/video/2021/08/04/83864-584745422_large.mp4",
+      "poster": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&q=80&w=600&h=1066"
+    },
+    {
+      "video": "https://cdn.pixabay.com/video/2021/08/04/83866-584745437_large.mp4",
+      "poster": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=600&h=1066"
     }
   ]
 }

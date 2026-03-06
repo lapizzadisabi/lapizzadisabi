@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { 
   Menu as MenuIcon, X, MapPin, Calendar, Users, 
-  Play, Flame, Check, ArrowRight, Star, Phone
+  Play, Flame, Check, ArrowRight, Star
 } from 'lucide-react';
 
 export default function App() {
@@ -172,6 +172,7 @@ export default function App() {
       <section id="media" className="py-24 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 text-center mb-12">
           <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Wat mag je verwachten?</h2>
+          <p className="text-lg md:text-xl text-gray-600 font-medium">De houtoven in actie. 450 graden, 90 seconden.</p>
         </div>
         
         {/* Carousel Layout: perfectly centered on mobile with 10vw padding and 80vw slides */}
@@ -239,23 +240,12 @@ export default function App() {
         </div>
       </section>
 
-   {/* Contact Formulier */}
+    {/* Contact Formulier */}
       <section id="contact" className="py-24 bg-gray-50 px-4 md:px-6 border-t border-black/10 overflow-hidden">
         <div className="max-w-4xl mx-auto">
-          
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">Boek uw live chef</h2>
-            <p className="text-lg text-gray-600 mb-4">Vul het formulier in voor een op maat gemaakte offerte.</p>
-            
-            {/* Sleek, non-boxy Call CTA */}
-            <div className="flex items-center justify-center gap-2 text-gray-800">
-              <Phone size={18} />
-              <span className="font-medium">Liever bellen?</span>
-              {/* VERVANG MET JOUW NUMMER */}
-              <a href="tel:+31612345678" className="font-black hover:underline underline-offset-4 decoration-2">
-                +31 6 12 34 56 78
-              </a>
-            </div>
+            <h2 className="text-5xl md:text-7xl font-black uppercase mb-6 tracking-tighter leading-none">Boek de Houtoven</h2>
+            <p className="text-lg text-gray-600">Vul het formulier in voor een op maat gemaakte offerte.</p>
           </div>
 
           <form 
@@ -278,17 +268,15 @@ export default function App() {
               </div>
             </div>
 
-            {/* Reverted back to the clean 2-column layout */}
             <div className="grid md:grid-cols-2 gap-5 md:gap-6">
-              <div className="flex flex-col gap-2 min-w-0">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-black uppercase tracking-widest flex items-center gap-2"><Calendar size={14}/> Datum Evenement</label>
                 <input required type="date" name="Datum" className="w-full p-3 md:p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors appearance-none rounded-none bg-white min-w-0 block" />
               </div>
-              
-              <div className="flex flex-col gap-2 min-w-0">
+              <div className="flex flex-col gap-2">
                 <label className="text-xs font-black uppercase tracking-widest flex items-center gap-2"><Users size={14}/> Aantal Personen</label>
-                <select required name="Aantal Personen" className="w-full p-3 md:p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors appearance-none rounded-none bg-white min-w-0" defaultValue="">
-                  <option value="" disabled>Kies het aantal gasten</option>
+                <select required name="Aantal Personen" className="w-full p-3 md:p-4 border-2 border-black focus:outline-none focus:bg-gray-50 transition-colors appearance-none rounded-none bg-white min-w-0">
+                  <option value="" disabled defaultValue="">Kies het aantal gasten</option>
                   <option value="0-10">0 - 10 personen</option>
                   <option value="10-20">10 - 20 personen</option>
                   <option value="20-30">20 - 30 personen</option>
@@ -309,61 +297,22 @@ export default function App() {
         </div>
       </section>
 
-      {/* Veelgestelde Vragen (Fluid Accordion Design) */}
-      <section className="py-24 bg-white px-6 border-t border-black/10">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4">Veelgestelde Vragen</h2>
-            <p className="text-lg md:text-xl text-gray-600 font-medium">Transparant en zonder verrassingen.</p>
-          </div>
-          
-          <div className="flex flex-col gap-4 md:gap-6">
-            {[
-              { q: "Wat hebben jullie nodig op locatie?", a: "Slechts een stukje ruimte van ongeveer 3x3 meter voor onze mobiele oven en werkbank." },
-              { q: "Hoe zit het met dieetwensen en allergieën?", a: "Geen probleem. We bieden fantastische veganistische opties (zoals onze Marinara) en kunnen rekening houden met diverse allergieën. Laat het ons simpelweg vooraf weten." },
-              { q: "Hoe lang blijven jullie pizza's bakken?", a: "Afhankelijk van het pakket en de groepsgrootte bakken wij 2 tot 4 uur lang onbeperkt pizza's. We arriveren ruim een uur van tevoren om de oven op 450°C te stoken." },
-              { q: "Wat gebeurt er als het regent?", a: "Wij hebben een professionele zwarte partytent om onze werkplek droog te houden. Zo kunnen we ook met typisch Nederlands weer gewoon de beste pizza's blijven bakken." }
-            ].map((faq, i) => (
-              <details key={i} className="group bg-white border-4 border-black p-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] cursor-pointer transition-all hover:-translate-y-1">
-                <summary className="text-lg md:text-2xl font-black uppercase tracking-wide list-none flex justify-between items-center outline-none [&::-webkit-details-marker]:hidden">
-                  {faq.q}
-                  <span className="transition-transform duration-300 group-open:rotate-180 shrink-0 ml-4">
-                    <svg fill="none" height="24" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                  </span>
-                </summary>
-                <p className="text-gray-600 mt-4 leading-relaxed font-medium text-base md:text-lg border-t-2 border-black/10 pt-4">
-                  {faq.a}
-                </p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final Footer */}
-      <footer className="bg-black text-white py-12 px-6">
+     <footer className="bg-black text-white py-12 px-6 border-t border-gray-900">
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center text-center">
+          
+          {/* Footer Logo & Brand */}
           <div className="flex items-center gap-3 mb-6 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
             <img src="/logo.png" alt="Logo" className="h-10 md:h-12 w-auto object-contain" onError={(e) => e.target.style.display='none'} />
             <div className="text-xl font-black uppercase tracking-tighter">
               La Pizza <span className="text-gray-500">di Sabi</span>
             </div>
           </div>
-          <p className="text-gray-500 text-[10px] uppercase tracking-widest font-bold">
+
+          <p className="text-gray-600 text-[10px] uppercase tracking-widest font-bold">
             &copy; {new Date().getFullYear()} La Pizza di Sabi. Alle rechten voorbehouden.
           </p>
         </div>
       </footer>
-
-      {/* Mobile Floating Call Button (Flat, No Shadow) */}
-      <a 
-        href="tel:+31612345678" 
-        className="md:hidden fixed bottom-6 right-6 bg-white text-black p-4 rounded-full border-4 border-black z-50 flex items-center justify-center active:translate-y-1 transition-transform"
-        aria-label="Bel La Pizza di Sabi"
-      >
-        <Phone size={28} />
-      </a>
-
     </div>
   );
 }
