@@ -24,7 +24,8 @@
       "features": [
         "Vrije keuze uit het volledige menu",
         "Live bereid in onze 450°C oven",
-        "Inclusief borden en servetten"
+        "Inclusief borden en servetten",
+        "Optioneel: verse tiramisu (+ €6,90 per portie)"
       ]
     },
     {
@@ -33,7 +34,9 @@
       "price": "17.90",
       "description": "20-29 pizza's",
       "features": [
-        "test"
+        "Vrije keuze uit het volledige menu",
+        "Live bereid in onze 450°C oven",
+        "Optioneel: verse tiramisu (+ €6,90 per portie)"
       ]
     },
     {
@@ -42,7 +45,9 @@
       "price": "16.90",
       "description": "30-39 pizza's",
       "features": [
-        "test"
+        "Vrije keuze uit het volledige menu",
+        "Live bereid in onze 450°C oven",
+        "Optioneel: verse tiramisu (+ €6,90 per portie)"
       ]
     }
   ],
@@ -74,6 +79,38 @@
       "name": "Frits",
       "review": "La Pizza Di Sabi was de perfecte keuze voor het pensioenfeest van onze schoonmoeder! Sabi tovert met enorme passie waanzinnige pizza's uit de oven en zorgt met zijn vriendelijkheid voor een geweldige sfeer. Een absolute aanrader als je unieke catering zoekt. Szabi, ontzettend bedankt voor deze onvergetelijke ervaring!",
       "image": "/uploads/whatsapp-image-2026-03-07-at-13.47.08.jpeg"
+    }
+  ],
+  "menu": [
+    {
+      "n": "Margherita",
+      "d": "Tomatensaus, Mozzarella, Parmigiano Reggiano, Basilicum",
+      "img": "/uploads/dsc07515.jpg"
+    },
+    {
+      "n": "Quattro Formaggi",
+      "d": "Ricottasaus, Mozzarella, Parmigiano Reggiano, Gorgonzola",
+      "img": "/uploads/dsc07566.jpg"
+    },
+    {
+      "n": "Tonijn",
+      "d": "Tomatensaus, Mozzarella, Tonijn, Uien, Basilicum, Citroensap",
+      "img": "/uploads/dsc07714.jpg"
+    },
+    {
+      "n": "Salami",
+      "d": "Tomatensaus, Mozzarella, Parmigiano Reggiano, Salami, Basilicum",
+      "img": "/uploads/dsc07588.jpg"
+    },
+    {
+      "n": "Pepperoni",
+      "d": "Tomatensaus, Mozzarella, Parmigiano Reggiano, Pepperoni, Rode Pepers, Chillivlokken",
+      "img": "/uploads/whatsapp-image-2026-03-07-at-13.26.57.jpeg"
+    },
+    {
+      "n": "Tiramisu",
+      "d": "Onze huisgemaakte Tiramisu is authentiek, luchtig en 100% alcoholvrij. Genieten voor iedereen!",
+      "img": "/uploads/whatsapp-image-2026-03-07-at-14.04.56.png"
     }
   ]
 }
