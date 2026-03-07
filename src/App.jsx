@@ -69,6 +69,9 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cmsData, setCmsData] = useState(null);
+  
+  // NEW: Form submission state
+  const [formStatus, setFormStatus] = useState(null);
 
   useEffect(() => {
     fetch('/content/data.json')
@@ -90,6 +93,23 @@ export default function App() {
       const offset = 80;
       window.scrollTo({ top: element.getBoundingClientRect().top + window.pageYOffset - offset, behavior: 'smooth' });
     }
+  };
+
+  // NEW: Background form submission handler
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+    
+    const form = e.target;
+    const formData = new FormData(form);
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => setFormStatus('success'))
+    .catch(() => setFormStatus('error'));
   };
 
   // --- CMS Content & Fallbacks ---
@@ -409,49 +429,67 @@ export default function App() {
             </div>
 
             <div className="w-full min-w-0 max-w-full order-2">
-              <form name="contact" method="POST" data-netlify="true" className="flex flex-col gap-4 md:gap-5 bg-white p-5 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[10px_10px_0px_0px_rgba(28,28,28,1)] w-full max-w-full overflow-hidden box-border">
-                {/* This hidden field is REQUIRED for Netlify to detect React forms */}
-                <input type="hidden" name="form-name" value="contact" />
-                
-                <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
-                  <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Naam</label>
-                  <input required type="text" name="Naam" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Jouw naam" />
+              {/* CONDITIONAL RENDERING: Show Thank You OR the Form */}
+              {formStatus === 'success' ? (
+                <div className="flex flex-col items-center justify-center gap-4 bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[10px_10px_0px_0px_rgba(28,28,28,1)] w-full text-center h-full">
+                  <div className="bg-[#C6F8E5] p-4 rounded-full border-[3px] border-[#1C1C1C] mb-2 animate-wiggle">
+                    <Heart size={48} className="text-[#1C1C1C] fill-[#FFAD87]" />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-[#1C1C1C]">Grazie!</h3>
+                  <p className="font-bold text-base md:text-lg text-gray-700">We hebben je aanvraag ontvangen. Sabi neemt zo snel mogelijk contact met je op voor jouw pizza feestje.</p>
+                  
+                  <button onClick={() => setFormStatus(null)} className="mt-4 px-6 py-3 md:px-8 md:py-4 rounded-full bg-[#BDE0FE] font-black uppercase tracking-widest text-sm md:text-base border-[3px] border-[#1C1C1C] btn-fluid shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] hover:bg-[#FFAD87] text-[#1C1C1C]">
+                    Nog een bericht sturen
+                  </button>
                 </div>
-                
-                <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
-                  <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Email / Telefoon</label>
-                  <input required type="text" name="Contact" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Hoe bereiken we je?" />
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full min-w-0 max-w-full">
+              ) : (
+                <form name="contact" method="POST" data-netlify="true" onSubmit={handleFormSubmit} className="flex flex-col gap-4 md:gap-5 bg-white p-5 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[10px_10px_0px_0px_rgba(28,28,28,1)] w-full max-w-full overflow-hidden box-border">
+                  <input type="hidden" name="form-name" value="contact" />
+                  
                   <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
-                    <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Datum</label>
-                    <input required type="date" name="Datum" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none m-0" />
+                    <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Naam</label>
+                    <input required type="text" name="Naam" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Jouw naam" />
                   </div>
                   
-                  {/* NEW TEXT/NUMBER INPUT FOR PIZZA AMOUNT */}
                   <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
-                    <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Aantal Pizza's</label>
-                    <input 
-                      required 
-                      type="number" 
-                      name="Aantal Pizza's" 
-                      min="12"
-                      className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none m-0" 
-                      placeholder="Hoeveel?" 
-                    />
+                    <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Email / Telefoon</label>
+                    <input required type="text" name="Contact" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Hoe bereiken we je?" />
                   </div>
-                </div>
 
-                <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
-                  <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Extra Info</label>
-                  <textarea required name="Bericht" rows="3" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all resize-none font-bold text-base md:text-lg box-border appearance-none" placeholder="Locatie? Dieetwensen?"></textarea>
-                </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full min-w-0 max-w-full">
+                    <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
+                      <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Datum</label>
+                      <input required type="date" name="Datum" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none m-0" />
+                    </div>
+                    
+                    <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
+                      <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Aantal Pizza's</label>
+                      <input 
+                        required 
+                        type="number" 
+                        name="Aantal Pizza's" 
+                        min="12"
+                        className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none m-0" 
+                        placeholder="Hoeveel?" 
+                      />
+                    </div>
+                  </div>
 
-                <button type="submit" className="w-full min-w-0 max-w-full py-4 md:py-5 mt-2 rounded-full bg-[#C6F8E5] font-black text-lg md:text-xl uppercase tracking-widest flex items-center justify-center gap-2 border-[3px] border-[#1C1C1C] btn-fluid shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[6px_6px_0px_0px_rgba(28,28,28,1)] hover:bg-[#BDE0FE] hover:text-[#1C1C1C] box-border">
-                  Stuur Aanvraag <Flame size={20} />
-                </button>
-              </form>
+                  <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
+                    <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Extra Info</label>
+                    <textarea required name="Bericht" rows="3" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all resize-none font-bold text-base md:text-lg box-border appearance-none" placeholder="Locatie? Dieetwensen?"></textarea>
+                  </div>
+
+                  {/* Disable button and change text while submitting to prevent double-clicks! */}
+                  <button type="submit" disabled={formStatus === 'submitting'} className="w-full min-w-0 max-w-full py-4 md:py-5 mt-2 rounded-full bg-[#C6F8E5] font-black text-lg md:text-xl uppercase tracking-widest flex items-center justify-center gap-2 border-[3px] border-[#1C1C1C] btn-fluid shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[6px_6px_0px_0px_rgba(28,28,28,1)] hover:bg-[#BDE0FE] hover:text-[#1C1C1C] box-border disabled:opacity-70 disabled:cursor-not-allowed">
+                    {formStatus === 'submitting' ? 'Even geduld...' : 'Stuur Aanvraag'} <Flame size={20} />
+                  </button>
+                  
+                  {formStatus === 'error' && (
+                    <p className="text-red-500 font-bold text-center text-sm mt-2">Er ging iets mis. Probeer het opnieuw!</p>
+                  )}
+                </form>
+              )}
             </div>
           </div>
 
