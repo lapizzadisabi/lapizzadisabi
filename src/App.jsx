@@ -409,10 +409,9 @@ export default function App() {
             </div>
 
             <div className="w-full min-w-0 max-w-full order-2">
-              <form action="https://formsubmit.co/ciao@lapizzadisabi.nl" method="POST" className="flex flex-col gap-4 md:gap-5 bg-white p-5 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[10px_10px_0px_0px_rgba(28,28,28,1)] w-full max-w-full overflow-hidden box-border">
-                <input type="hidden" name="_captcha" value="false" />
-                <input type="hidden" name="_subject" value="Nieuwe Offerte Aanvraag - La Pizza di Sabi" />
-                <input type="hidden" name="_next" value="https://lapizzadisabi.nl" />
+              <form name="contact" method="POST" data-netlify="true" className="flex flex-col gap-4 md:gap-5 bg-white p-5 md:p-8 rounded-[2rem] md:rounded-[2.5rem] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[10px_10px_0px_0px_rgba(28,28,28,1)] w-full max-w-full overflow-hidden box-border">
+                {/* This hidden field is REQUIRED for Netlify to detect React forms */}
+                <input type="hidden" name="form-name" value="contact" />
                 
                 <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
                   <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Naam</label>
