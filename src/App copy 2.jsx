@@ -288,12 +288,12 @@ export default function App() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-5 mb-16 md:mb-24 w-full">
-            {(cmsData?.menu || [
+            {[
               { n: 'Margherita', d: 'San Marzano tomaten, fior di latte, verse basilicum.', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600' },
               { n: 'Diavola', d: 'San Marzano tomaten, fior di latte, pittige salami.', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&q=80&w=600' },
               { n: 'Tartufo', d: 'Fior di latte, truffelcrème, paddenstoelen, Parmezaan.', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600' },
               { n: 'Marinara', d: 'San Marzano tomaten, knoflook, oregano (Vegan).', img: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600' },
-            ]).map((p, i) => (
+            ].map((p, i) => (
               <div key={i} className={`flex items-center gap-4 md:gap-6 bg-white border-[3px] border-[#1C1C1C] p-3 md:p-4 rounded-2xl md:rounded-[2rem] shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] hover:-translate-y-1 transition-transform ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}>
                 <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-[3px] border-[#1C1C1C] shrink-0 overflow-hidden shadow-inner">
                   <img src={p.img} alt={p.n} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />

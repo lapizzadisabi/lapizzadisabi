@@ -23,18 +23,11 @@ const styles = `
   }
   @keyframes float {
     0% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-8px) rotate(2deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
     100% { transform: translateY(0px) rotate(0deg); }
   }
   .animate-float {
     animation: float 4s ease-in-out infinite;
-  }
-  @keyframes wiggle {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
-  }
-  .animate-wiggle {
-    animation: wiggle 2s ease-in-out infinite;
   }
   
   .btn-fluid {
@@ -49,7 +42,7 @@ const styles = `
 // Wavy divider
 const WaveDivider = ({ colorClass, flip = false }) => (
   <div className={`w-full overflow-hidden leading-none block ${flip ? 'rotate-180 -mt-1' : '-mb-1'}`}>
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={`w-full h-8 md:h-16 lg:h-24 ${colorClass}`}>
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={`w-full h-10 md:h-24 ${colorClass}`}>
       <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C52.16,112.44,112.08,121.71,165.7,112.5,221.75,102.83,271.86,72.68,321.39,56.44Z" fill="currentColor"></path>
     </svg>
   </div>
@@ -83,14 +76,7 @@ export default function App() {
   };
 
   // --- CMS Content & Fallbacks ---
-  const hero = cmsData?.hero || { 
-    title: "Pizza Feestje?", 
-    subtitle: "Wij droppen de oven, fixen het deeg en maken er een smaakvol feest van.", 
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-    chefImage: "https://images.unsplash.com/photo-1627626775846-122b778965ae?auto=format&fit=crop&q=80&w=600",
-    // Fallback arrow if CMS is empty
-    arrowImage: "https://lapizzadisabi.nl/54eb5c71-c425-463c-aa32-c4a42c59527d"
-  };
+  const hero = cmsData?.hero || { title: "Pizza Feestje?", subtitle: "Wij droppen de oven, fixen het deeg en maken er een smaakvol feest van.", image: "https://images.unsplash.com/photo-1513104890138-7c749659a591" };
   const packages = cmsData?.pricing || [];
   const testimonials = cmsData?.testimonials || [];
   
@@ -107,7 +93,7 @@ export default function App() {
   ];
 
   return (
-    <div className="font-sans text-[#1C1C1C] bg-[#FFF4CB] min-h-screen selection:bg-[#FFAD87] selection:text-[#1C1C1C] antialiased overflow-x-hidden relative flex flex-col">
+    <div className="font-sans text-[#1C1C1C] bg-[#FFF4CB] min-h-screen selection:bg-[#FFAD87] selection:text-[#1C1C1C] antialiased w-full max-w-[100vw] overflow-x-hidden relative flex flex-col">
       <style>{styles}</style>
       
       {/* Floating Pill Navigation */}
@@ -146,66 +132,31 @@ export default function App() {
         )}
       </div>
 
-      {/* Hero Section - Decluttered, Spinner Removed */}
-      <section className="relative pt-32 pb-16 md:pt-48 md:pb-32 px-4 flex flex-col justify-center items-center overflow-hidden bg-[#FFF4CB]">
+      {/* Fluid Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-56 md:pb-40 px-4 flex flex-col justify-center items-center overflow-hidden">
         
-        {/* Floating stickers hidden on mobile for de-cluttering */}
-        <div className="absolute top-32 left-10 w-16 h-16 bg-[#FFAD87] rounded-full border-[3px] border-[#1C1C1C] animate-float z-10 hidden lg:block"></div>
-        <div className="absolute bottom-10 left-20 w-24 h-24 bg-[#BDE0FE] rotate-12 rounded-2xl border-[3px] border-[#1C1C1C] animate-float z-10 hidden lg:block" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-32 left-10 w-16 h-16 bg-[#FFAD87] rounded-full border-[3px] border-[#1C1C1C] animate-float z-10 hidden md:block"></div>
+        <div className="absolute bottom-10 right-10 md:right-20 w-16 h-16 md:w-24 md:h-24 bg-[#BDE0FE] rotate-12 rounded-2xl border-[3px] border-[#1C1C1C] animate-float z-10" style={{ animationDelay: '1s' }}></div>
 
-        <div className="relative z-30 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 w-full">
+        <div className="absolute top-16 right-4 sm:right-10 md:top-32 md:right-32 w-20 h-20 md:w-28 md:h-28 bg-[#C6F8E5] rounded-full border-[3px] border-[#1C1C1C] shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] flex items-center justify-center animate-spin-slow z-20">
+          <span className="font-black uppercase text-center text-[9px] md:text-xs tracking-widest leading-none rotate-12">100%<br/>Napoli<br/>Style</span>
+        </div>
+
+        <div className="relative z-30 text-center max-w-5xl mx-auto flex flex-col items-center mt-12 md:mt-0 w-full">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[110px] font-black uppercase tracking-tighter mb-8 text-[#1C1C1C] relative w-full px-2 break-words">
+            <span className="relative z-10">{hero.title}</span>
+            <span className="absolute top-1 left-1 md:top-2 md:left-2 text-white -z-10">{hero.title}</span>
+          </h1>
           
-          {/* LEFT: Text & CTA */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left w-full lg:w-3/5 mt-4 md:mt-0 px-2 relative">
-            {/* FIX: Using text-shadow instead of duplicated spans.
-              This prevents the multi-line breaking alignment issues! 
-            */}
-            <h1 
-              className="text-[3.2rem] leading-[0.95] sm:text-6xl md:text-[5.5rem] lg:text-[100px] font-black uppercase tracking-tighter mb-6 md:mb-8 text-[#1C1C1C] w-full break-words"
-              style={{ textShadow: '2px 2px 0px white, 4px 4px 0px white' }}
-            >
-              {hero.title}
-            </h1>
-            
-            <div className="bg-white border-[3px] border-[#1C1C1C] rounded-2xl md:rounded-full p-4 md:px-8 md:py-4 shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[6px_6px_0px_0px_rgba(28,28,28,1)] mb-8 md:mb-10 -rotate-1 md:-rotate-2 hover:rotate-1 transition-transform w-full md:w-auto">
-              <p className="text-sm sm:text-base md:text-xl font-bold uppercase leading-snug md:leading-tight">
-                {hero.subtitle}
-              </p>
-            </div>
-            
-            <button onClick={() => scrollToSection('contact')} className="px-8 py-4 md:px-10 md:py-5 rounded-full bg-[#FFAD87] font-black uppercase tracking-widest text-base md:text-xl border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[8px_8px_0px_0px_rgba(28,28,28,1)] btn-fluid flex justify-center items-center gap-3 hover:bg-[#BDE0FE] group">
-              Vraag Offerte <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
+          <div className="bg-white border-[3px] border-[#1C1C1C] rounded-full px-6 py-3 md:px-8 md:py-4 shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[6px_6px_0px_0px_rgba(28,28,28,1)] mb-10 -rotate-2 max-w-2xl hover:rotate-1 transition-transform mx-2">
+            <p className="text-sm md:text-2xl font-bold uppercase leading-tight">
+              {hero.subtitle}
+            </p>
           </div>
-
-          {/* RIGHT: Meet Sabi PORTRAIT photo & CMS Arrow */}
-          <div className="relative flex justify-center w-full lg:w-2/5 mt-16 md:mt-24 lg:mt-0 scale-95 sm:scale-100">
-            
-            {/* The Floating Arrow & Label (Top Left) */}
-            <div className="absolute -top-12 -left-2 sm:-left-8 md:-top-16 md:-left-16 flex flex-col items-center rotate-[-10deg] animate-float z-40">
-              <span className="font-black text-xs sm:text-sm md:text-xl uppercase bg-[#BDE0FE] px-3 py-1 md:px-4 md:py-2 rounded-full border-[3px] border-[#1C1C1C] shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] text-[#1C1C1C] mb-2 -rotate-3">
-                Meet your Chef, Sabi!
-              </span>
-              
-              {/* EDITABLE ARROW FROM CMS */}
-              <img 
-                src={hero.arrowImage} 
-                alt="Arrow pointing to Sabi" 
-                className="w-16 h-16 sm:w-20 sm:h-20 md:w-28 md:h-28 object-contain animate-wiggle drop-shadow-[2px_2px_0px_rgba(28,28,28,1)]"
-              />
-            </div>
-
-            {/* PORTRAIT Polaroid photo structure */}
-            <div className="bg-white p-3 md:p-4 rounded-[2rem] border-[3px] border-[#1C1C1C] shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[8px_8px_0px_0px_rgba(28,28,28,1)] rotate-3 hover:-rotate-1 transition-transform relative z-30">
-              <img 
-                src={hero.chefImage} 
-                alt="Chef Sabi" 
-                className="w-56 h-72 md:w-72 md:h-96 object-cover rounded-2xl border-[3px] border-[#1C1C1C]" 
-              />
-            </div>
-            
-          </div>
-
+          
+          <button onClick={() => scrollToSection('contact')} className="px-8 py-4 md:px-10 md:py-5 rounded-full bg-[#FFAD87] font-black uppercase tracking-widest text-base md:text-xl border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[8px_8px_0px_0px_rgba(28,28,28,1)] btn-fluid flex justify-center items-center gap-3 hover:bg-[#BDE0FE] group">
+            Vraag Offerte <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </section>
 
@@ -224,12 +175,10 @@ export default function App() {
         </div>
       </div>
 
-      <div className="bg-[#FFF4CB] w-full relative z-20">
-        <WaveDivider colorClass="text-[#FFAD87]" />
-      </div>
+      <WaveDivider colorClass="text-[#FFAD87]" />
 
       {/* Fluid Packages Section */}
-      <section id="pakketten" className="pt-6 pb-24 md:pt-8 md:pb-32 px-4 md:px-6 bg-[#FFAD87] relative z-10 -mt-1">
+      <section id="pakketten" className="pt-12 pb-24 md:pt-16 md:pb-32 px-4 md:px-6 bg-[#FFAD87] relative">
         <div className="max-w-7xl mx-auto relative z-10 w-full">
           <h2 className="text-center text-5xl md:text-7xl font-black uppercase tracking-tighter mb-12 md:mb-16 text-white" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Pakketten</h2>
           
@@ -270,30 +219,22 @@ export default function App() {
         </div>
       </section>
 
-      <div className="bg-[#FFAD87] w-full relative z-20">
-        <WaveDivider colorClass="text-[#BDE0FE]" />
-      </div>
+      <WaveDivider colorClass="text-[#BDE0FE]" />
 
-      {/* Smooth Menu & Spinner Section */}
-      <section id="menu" className="pt-6 pb-24 md:pt-8 md:pb-32 bg-[#BDE0FE] px-4 md:px-6 relative z-10 -mt-1 overflow-visible">
-        
-        {/* MOVED SPINNER: Now floating in the Menu section! */}
-        <div className="absolute top-0 right-4 md:top-10 md:right-20 w-20 h-20 md:w-32 md:h-32 bg-[#FFF4CB] rounded-full border-[3px] border-[#1C1C1C] shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] flex items-center justify-center animate-spin-slow z-20">
-          <span className="font-black uppercase text-center text-[9px] md:text-sm tracking-widest leading-none rotate-12 text-[#1C1C1C]">100%<br/>Napoli<br/>Style</span>
-        </div>
-
-        <div className="max-w-7xl mx-auto w-full relative z-30">
+      {/* Smooth Menu & Photos Section */}
+      <section id="menu" className="pt-12 pb-24 md:pt-16 md:pb-32 bg-[#BDE0FE] px-4 md:px-6 relative">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Het Menu</h2>
           </div>
           
           <div className="grid md:grid-cols-2 gap-5 mb-16 md:mb-24 w-full">
-            {(cmsData?.menu || [
+            {[
               { n: 'Margherita', d: 'San Marzano tomaten, fior di latte, verse basilicum.', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600' },
               { n: 'Diavola', d: 'San Marzano tomaten, fior di latte, pittige salami.', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&q=80&w=600' },
               { n: 'Tartufo', d: 'Fior di latte, truffelcrème, paddenstoelen, Parmezaan.', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600' },
               { n: 'Marinara', d: 'San Marzano tomaten, knoflook, oregano (Vegan).', img: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600' },
-            ]).map((p, i) => (
+            ].map((p, i) => (
               <div key={i} className={`flex items-center gap-4 md:gap-6 bg-white border-[3px] border-[#1C1C1C] p-3 md:p-4 rounded-2xl md:rounded-[2rem] shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] hover:-translate-y-1 transition-transform ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'}`}>
                 <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-[3px] border-[#1C1C1C] shrink-0 overflow-hidden shadow-inner">
                   <img src={p.img} alt={p.n} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
@@ -318,12 +259,10 @@ export default function App() {
         </div>
       </section>
 
-      <div className="bg-[#BDE0FE] w-full relative z-20">
-        <WaveDivider colorClass="text-[#C6F8E5]" />
-      </div>
+      <WaveDivider colorClass="text-[#C6F8E5]" />
 
-      {/* Soft & Bouncy Trust */}
-      <section className="pt-6 pb-24 md:pt-8 md:pb-32 bg-[#C6F8E5] px-4 md:px-6 relative z-10 -mt-1">
+      {/* Soft & Bouncy Trust (Mint Green) */}
+      <section className="pt-12 pb-24 md:pt-16 md:pb-32 bg-[#C6F8E5] px-4 md:px-6 relative">
         <div className="max-w-7xl mx-auto w-full">
           <h2 className="text-center text-5xl md:text-7xl font-black uppercase mb-12 md:mb-16 tracking-tighter text-white" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Liefde</h2>
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 w-full">
@@ -349,15 +288,14 @@ export default function App() {
         </div>
       </section>
 
-      <div className="bg-[#C6F8E5] w-full relative z-20">
-        <WaveDivider colorClass="text-[#FFAD87]" />
-      </div>
+      <WaveDivider colorClass="text-[#FFAD87]" />
 
-      {/* Contact Section */}
-      <section id="contact" className="pt-6 pb-32 md:pt-8 md:pb-32 px-4 md:px-6 bg-[#FFAD87] relative z-10 -mt-1">
+      {/* Fluid Contact Form (Tangerine background) */}
+      <section id="contact" className="pt-12 pb-32 md:pt-16 md:pb-32 px-4 md:px-6 bg-[#FFAD87] relative">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-16 w-full">
           
-          <div className="order-2 lg:order-1 w-full min-w-0 max-w-full">
+          {/* Form Side - MIN-W-0 ON EVERYTHING TO PREVENT MOBILE BLOWOUT */}
+          <div className="order-2 lg:order-1 w-full min-w-0">
             <div className="mb-6 md:mb-8 text-center lg:text-left">
               <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter text-white mb-2" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Let's Go!</h2>
               <p className="text-sm md:text-lg font-bold text-gray-800 uppercase bg-white inline-block px-4 py-1.5 rounded-full border-[3px] border-[#1C1C1C] -rotate-1 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)]">Tijd voor een pizza party.</p>
@@ -378,6 +316,7 @@ export default function App() {
                 <input required type="text" name="Contact" className="w-full min-w-0 p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Hoe bereiken we je?" />
               </div>
 
+              {/* Fixed the Datum blowout with strict min-w-0 max-w-full and appearance-none */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full min-w-0">
                 <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
                   <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Datum</label>
@@ -405,6 +344,7 @@ export default function App() {
             </form>
           </div>
 
+          {/* Videos & FAQ Side */}
           <div className="order-1 lg:order-2 flex flex-col justify-start w-full min-w-0 max-w-full">
             
             <div id="media" className="flex gap-4 mb-10 overflow-x-auto pb-4 hide-scrollbar px-1 w-full">

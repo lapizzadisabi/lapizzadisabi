@@ -2,59 +2,79 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "public/uploads"
+public_folder: "/uploads"
 
 collections:
-  - name: "pages"
-    label: "Pagina's"
+  - name: "content"
+    label: "Website Content"
     files:
       - file: "public/content/data.json"
-        label: "Home Pagina"
-        name: "home"
+        label: "Website Data"
+        name: "data"
         fields:
+          # 1. HERO SECTION
           - label: "Hero Sectie"
             name: "hero"
             widget: "object"
             fields:
-              - {label: "Hoofdtitel", name: "title", widget: "string"}
-              - {label: "Subtekst", name: "subtitle", widget: "text"}
-              - {label: "Achtergrond Afbeelding", name: "image", widget: "image"}
+              - {label: "Titel", name: "title", widget: "string"}
+              - {label: "Ondertitel", name: "subtitle", widget: "string"}
+              - {label: "Achtergrond Foto", name: "image", widget: "image"}
+              - {label: "Portretfoto Chef", name: "chefImage", widget: "image"}
+              - {label: "Pijl Afbeelding (Transparant SVG of PNG)", name: "arrowImage", widget: "image"}
 
-          - label: "Ons Ambacht"
+          # 2. CONCEPT / ABOUT SECTION
+          - label: "Concept Sectie (Over ons)"
             name: "craft"
             widget: "object"
             fields:
-              - {label: "Titel", name: "title", widget: "string"}
-              - {label: "Beschrijving", name: "description", widget: "text"}
-              - {label: "Afbeelding", name: "image", widget: "image"}
+              - {label: "Sfeerfoto bij tekst", name: "image", widget: "image", hint: "De grote foto naast de tekst 'Jouw evenement, onze zorg'"}
 
+          # 3. ROLLING GALLERY
+          - label: "Foto Galerij (Roterende balk)"
+            name: "gallery"
+            widget: "list"
+            hint: "Voeg hier sfeerfoto's toe. De website scrolt ze automatisch achter elkaar door."
+            field: {label: "Foto", name: "image", widget: "image"}
+
+          # 4. PACKAGES (PRICING)
           - label: "Pakketten (Pricing)"
             name: "pricing"
             widget: "list"
-            summary: "{{fields.title}}"
             fields:
-              - {label: "Pakket Naam", name: "title", widget: "string"}
-              - {label: "Korte omschrijving", name: "description", widget: "string"}
-              - {label: "Prijs (alleen het getal)", name: "price", widget: "string"}
-              - {label: "Populairste pakket?", name: "featured", widget: "boolean", default: false}
-              - label: "Kenmerken"
+              - {label: "Naam Pakket", name: "title", widget: "string"}
+              - {label: "Prijs per persoon", name: "price", widget: "string", hint: "Bijv: 17.50"}
+              - {label: "Korte Beschrijving", name: "description", widget: "string"}
+              - {label: "Licht dit pakket uit? (Meest Gekozen)", name: "featured", widget: "boolean", default: false}
+              - label: "Kenmerken (Checkmarks)"
                 name: "features"
                 widget: "list"
-                field: {label: "Punt", name: "text", widget: "string"}
+                field: {label: "Kenmerk", name: "feature", widget: "string"}
 
-          - label: "Klantbeoordelingen (Reviews)"
+          # 5. VIDEOS (MEDIA)
+          - label: "Actie Video's (Media)"
+            name: "reels"
+            widget: "list"
+            hint: "Upload .mp4 video's (bij voorkeur verticaal 9:16)"
+            fields:
+              - {label: "Video Bestand (.mp4)", name: "video", widget: "file"}
+              - {label: "Cover Foto (Zichtbaar voordat video speelt)", name: "poster", widget: "image"}
+
+          # 6. REVIEWS
+          - label: "Wat klanten zeggen (Reviews)"
             name: "testimonials"
             widget: "list"
-            summary: "Review van {{fields.name}}"
             fields:
               - {label: "Naam Klant", name: "name", widget: "string"}
               - {label: "Review Tekst", name: "review", widget: "text"}
-              - {label: "Profielfoto", name: "image", widget: "image"}
-
-          - label: "Kijk hier (Videos)"
-            name: "reels"
+              - {label: "Profielfoto Klant", name: "image", widget: "image"}
+          
+          # 4.5 MENU
+          - label: "Het Menu (Pizza's)"
+            name: "menu"
             widget: "list"
             fields:
-              - {label: "Video (.mp4 upload)", name: "video", widget: "file"}
-              - {label: "Poster Beeld (foto)", name: "poster", widget: "image"}
+              - {label: "Naam Pizza", name: "n", widget: "string"}
+              - {label: "Ingrediënten", name: "d", widget: "string"}
+              - {label: "Pizza Foto", name: "img", widget: "image"}
