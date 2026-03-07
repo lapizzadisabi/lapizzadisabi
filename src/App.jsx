@@ -505,7 +505,7 @@ export default function App() {
 
       {/* Bouncy Mobile Sticky CTA */}
       <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50 flex gap-3 pointer-events-none">
-        <a href="tel:+31612345678" className="flex-none p-3.5 rounded-full bg-[#C6F8E5] text-[#1C1C1C] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] btn-fluid flex items-center justify-center pointer-events-auto">
+        <a href="tel:+31612704367" className="flex-none p-3.5 rounded-full bg-[#C6F8E5] text-[#1C1C1C] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] btn-fluid flex items-center justify-center pointer-events-auto">
           <Phone size={22} />
         </a>
         <button onClick={() => scrollToSection('contact')} className="flex-1 py-3.5 rounded-full bg-[#FFAD87] text-[#1C1C1C] font-black text-sm uppercase tracking-widest border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] btn-fluid pointer-events-auto">
