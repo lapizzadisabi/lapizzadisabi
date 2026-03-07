@@ -1,105 +1,48 @@
- {
+{
   "hero": {
-    "title": "Pizza Feestje?",
-    "subtitle": "Wij droppen de oven, fixen het deeg en maken er een smaakvol feest van.",
-    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-    "chefImage": "https://images.unsplash.com/photo-1627626775846-122b778965ae",
-    "arrowImage": "https://lapizzadisabi.nl/54eb5c71-c425-463c-aa32-c4a42c59527d"
+    "title": "Wij brengen de pizzeria naar JOU!",
+    "subtitle": "Of het nu gaat om een bedrijfsborrel of een feestelijke gelegenheid privé, wij komen langs met onze ovens voor verse pizza's in Napolitaanse stijl.",
+    "image": "/uploads/41.jpg",
+    "chefImage": "/uploads/whatsapp-image-2026-03-07-at-12.47.01.jpeg",
+    "arrowImage": "/uploads/hand-drawn-spiral-arrow_78370-4667.png"
   },
   "craft": {
-    "image": "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"
+    "image": "/uploads/41.jpg"
   },
   "gallery": [
-    "https://images.unsplash.com/photo-1520209268518-aec60b8bb5ca",
-    "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca",
-    "https://images.unsplash.com/photo-1555244162-803834f70033",
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622",
-    "https://images.unsplash.com/photo-1574071318508-1cdbab80d002"
+    "/uploads/33.jpg",
+    "/uploads/43.jpg",
+    "/uploads/29.png",
+    "/uploads/41.jpg"
   ],
   "pricing": [
     {
-      "title": "Pizza Party",
-      "price": "17.50",
-      "description": "Perfect voor verjaardagen en borrels.",
       "featured": false,
+      "title": "De Groep",
+      "price": "18.90",
+      "description": "12-19 pizza's",
       "features": [
-        "Onbeperkt pizza's (2 uur)",
-        "Keuze uit 4 soorten pizza",
-        "Inclusief chef & mobiele oven",
-        "Borden & servetten inbegrepen"
+        "Test",
+        null
       ]
     },
-    "menu": [
     {
-      "n": "Margherita",
-      "d": "San Marzano tomaten, fior di latte, verse basilicum.",
-      "img": "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-      "n": "Diavola",
-      "d": "San Marzano tomaten, fior di latte, pittige salami.",
-      "img": "https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-      "n": "Tartufo",
-      "d": "Fior di latte, truffelcrème, paddenstoelen, Parmezaan.",
-      "img": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600"
-    },
-    {
-      "n": "Marinara",
-      "d": "San Marzano tomaten, knoflook, oregano (Vegan).",
-      "img": "https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600"
-    }
-  ],
-    {
-      "title": "La Dolce Vita",
-      "price": "24.50",
-      "description": "De complete Italiaanse ervaring.",
       "featured": true,
+      "title": "Het Feestpakket",
+      "price": "17.90",
+      "description": "20-29 pizza's",
       "features": [
-        "Onbeperkt pizza's (3 uur)",
-        "Antipasti planken vooraf",
-        "Keuze uit 6 soorten pizza",
-        "Inclusief professionele partytent"
+        "test"
       ]
     },
     {
-      "title": "Corporate",
-      "price": "Op aanvraag",
-      "description": "Voor grote groepen en evenementen.",
       "featured": false,
+      "title": "Het Grote Evenement",
+      "price": "16.90",
+      "description": "30-39 pizza's",
       "features": [
-        "Tot wel 200+ personen",
-        "Meerdere ovens mogelijk",
-        "Aangepast menu op maat",
-        "Volledige ontzorging"
+        "test"
       ]
-    }
-  ],
-  "reels": [
-    {
-      "video": "https://cdn.pixabay.com/video/2020/04/29/37597-415510619_large.mp4",
-      "poster": "https://images.unsplash.com/photo-1590947132387-155cc02f3212"
-    },
-    {
-      "video": "https://cdn.pixabay.com/video/2021/08/04/83864-584745422_large.mp4",
-      "poster": "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d"
-    },
-    {
-      "video": "https://cdn.pixabay.com/video/2021/08/04/83866-584745437_large.mp4",
-      "poster": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38"
-    }
-  ],
-  "testimonials": [
-    {
-      "name": "Sarah & Tom",
-      "review": "Sabi heeft op onze bruiloft gebakken. Wat een fantastische ervaring! De gasten praten nog steeds over de truffelpizza. Absolute aanrader.",
-      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330"
-    },
-    {
-      "name": "Bedrijfsevenement",
-      "review": "Binnen no-time stonden er tientallen perfecte pizza's klaar voor ons team van 60 man. Zeer professioneel en alles netjes achtergelaten.",
-      "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a"
     }
   ]
 }
