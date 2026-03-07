@@ -224,7 +224,7 @@ export default function App() {
           <div className="relative flex justify-center w-full lg:w-2/5 mt-16 md:mt-24 lg:mt-0 scale-95 sm:scale-100">
             <div className="absolute -top-12 -left-2 sm:-left-8 md:-top-16 md:-left-16 flex flex-col items-center rotate-[-10deg] animate-float z-40">
               <span className="font-black text-xs sm:text-sm md:text-xl uppercase bg-[#BDE0FE] px-3 py-1 md:px-4 md:py-2 rounded-full border-[3px] border-[#1C1C1C] shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] text-[#1C1C1C] mb-2 -rotate-3">
-                Meet your Chef, Sabi!
+                Meet your live Chef, Sabi!
               </span>
               <img 
                 src={hero.arrowImage} 
