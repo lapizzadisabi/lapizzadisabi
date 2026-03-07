@@ -22,7 +22,9 @@
       "price": "18.90",
       "description": "12-19 pizza's",
       "features": [
-        "Test"
+        "Vrije keuze uit het volledige menu",
+        "Live bereid in onze 450°C oven",
+        "Inclusief borden en servetten"
       ]
     },
     {
@@ -47,19 +49,19 @@
   "reels": [
     {
       "video": "/uploads/vid_20260305_121716_030_bsl.mp4",
-      "poster": "/uploads/43.jpg"
+      "poster": "/uploads/1000027133.jpg"
     },
     {
       "video": "/uploads/vid_20260305_121923_211_bsl.mp4",
-      "poster": "/uploads/43.jpg"
+      "poster": "/uploads/1000027135.jpg"
     },
     {
       "video": "/uploads/vid_20260305_121947_847_bsl.mp4",
-      "poster": "/uploads/43.jpg"
+      "poster": "/uploads/1000027143.jpg"
     },
     {
       "video": "/uploads/202603071308-1-.mp4",
-      "poster": "/uploads/43.jpg"
+      "poster": "/uploads/1000027145.jpg"
     }
   ],
   "testimonials": [
@@ -70,8 +72,8 @@
     },
     {
       "name": "Frits",
-      "review": "La Pizza Di Sabi was de perfecte keuze voor het pensioenfeest van onze schoonmoeder! Sabi tovert met enorme passie waanzinnige pizza's uit de oven en zorgt met zijn vriendelijkheid voor een geweldige sfeer. Een absolute aanrader als je unieke catering zoekt. Szabi, ontzettend bedankt voor deze onvergetelijke ervaring!\"",
-      "image": "/uploads/whatsapp-image-2026-03-07-at-13.24.40-1-.jpeg"
+      "review": "La Pizza Di Sabi was de perfecte keuze voor het pensioenfeest van onze schoonmoeder! Sabi tovert met enorme passie waanzinnige pizza's uit de oven en zorgt met zijn vriendelijkheid voor een geweldige sfeer. Een absolute aanrader als je unieke catering zoekt. Szabi, ontzettend bedankt voor deze onvergetelijke ervaring!",
+      "image": "/uploads/whatsapp-image-2026-03-07-at-13.47.08.jpeg"
     }
   ]
 }
