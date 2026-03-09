@@ -69,15 +69,27 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cmsData, setCmsData] = useState(null);
-  
-  // NEW: Form submission state
   const [formStatus, setFormStatus] = useState(null);
 
   useEffect(() => {
     fetch('/content/data.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
       .then(data => setCmsData(data))
-      .catch(() => console.log("Laden van content..."));
+      .catch(() => {
+        console.log("CMS Data kon niet laden. Nood-fallbacks ingeschakeld.");
+        // This only fires if the CMS database is completely broken/missing.
+        setCmsData({
+          hero: {
+            title: "Pizza Feestje?", 
+            subtitle: "Wij droppen de oven, fixen het deeg en maken er een smaakvol feest van.", 
+            chefImage: "https://images.unsplash.com/photo-1627626775846-122b778965ae?auto=format&fit=crop&q=80&w=600",
+            arrowImage: "https://lapizzadisabi.nl/54eb5c71-c425-463c-aa32-c4a42c59527d"
+          }
+        });
+      });
   }, []);
 
   useEffect(() => {
@@ -95,7 +107,6 @@ export default function App() {
     }
   };
 
-  // NEW: Background form submission handler
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setFormStatus('submitting');
@@ -112,28 +123,29 @@ export default function App() {
     .catch(() => setFormStatus('error'));
   };
 
-  // --- CMS Content & Fallbacks ---
-  const hero = cmsData?.hero || { 
-    title: "Pizza Feestje?", 
-    subtitle: "Wij droppen de oven, fixen het deeg en maken er een smaakvol feest van.", 
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591",
-    chefImage: "https://images.unsplash.com/photo-1627626775846-122b778965ae?auto=format&fit=crop&q=80&w=600",
-    arrowImage: "https://lapizzadisabi.nl/54eb5c71-c425-463c-aa32-c4a42c59527d"
-  };
-  const packages = cmsData?.pricing || [];
-  const testimonials = cmsData?.testimonials || [];
-  
-  const reels = cmsData?.reels && cmsData.reels.length > 0 ? cmsData.reels : [
-    { video: "https://cdn.pixabay.com/video/2020/04/29/37597-415510619_large.mp4", poster: "https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600&h=1066" },
-    { video: "https://cdn.pixabay.com/video/2021/08/04/83864-584745422_large.mp4", poster: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&q=80&w=600&h=1066" }
-  ];
+  // ------------------------------------------------------------------
+  // NEW: THE LOADING SCREEN
+  // This blocks the browser from downloading heavy placeholder images!
+  // ------------------------------------------------------------------
+  if (!cmsData) {
+    return (
+      <div className="min-h-screen bg-[#FFF4CB] flex flex-col items-center justify-center text-[#1C1C1C]">
+        <style>{styles}</style>
+        <div className="text-6xl md:text-8xl animate-wiggle mb-6 drop-shadow-xl">🍕</div>
+        <h2 className="text-xl md:text-3xl font-black uppercase tracking-widest text-center px-4 animate-pulse">
+          De oven is aan het voorverwarmen...
+        </h2>
+      </div>
+    );
+  }
 
-  const galleryBase = cmsData?.gallery && cmsData.gallery.length > 0 ? cmsData.gallery : [
-    "https://images.unsplash.com/photo-1520209268518-aec60b8bb5ca?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800",
-    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
-  ];
+  // --- CMS Content Mapping (Now guaranteed to be CMS Data) ---
+  const hero = cmsData.hero || {};
+  const packages = cmsData.pricing || [];
+  const testimonials = cmsData.testimonials || [];
+  const reels = cmsData.reels || [];
+  const galleryBase = cmsData.gallery || [];
+  const menuItems = cmsData.menu || [];
 
   const faqs = [
     {
@@ -342,12 +354,7 @@ export default function App() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-5 mb-16 md:mb-24 w-full min-w-0">
-            {(cmsData?.menu || [
-              { n: 'Margherita', d: 'San Marzano tomaten, fior di latte, verse basilicum.', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&q=80&w=600' },
-              { n: 'Diavola', d: 'San Marzano tomaten, fior di latte, pittige salami.', img: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&q=80&w=600' },
-              { n: 'Tartufo', d: 'Fior di latte, truffelcrème, paddenstoelen, Parmezaan.', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&q=80&w=600' },
-              { n: 'Marinara', d: 'San Marzano tomaten, knoflook, oregano (Vegan).', img: 'https://images.unsplash.com/photo-1590947132387-155cc02f3212?auto=format&fit=crop&q=80&w=600' },
-            ]).map((p, i) => (
+            {menuItems.map((p, i) => (
               <div key={i} className={`flex items-center gap-4 md:gap-6 bg-white border-[3px] border-[#1C1C1C] p-3 md:p-4 rounded-2xl md:rounded-[2rem] shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] hover:-translate-y-1 transition-transform ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'} min-w-0`}>
                 <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-[3px] border-[#1C1C1C] shrink-0 overflow-hidden shadow-inner">
                   <img src={p.img} alt={p.n} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
@@ -429,7 +436,6 @@ export default function App() {
             </div>
 
             <div className="w-full min-w-0 max-w-full order-2">
-              {/* CONDITIONAL RENDERING: Show Thank You OR the Form */}
               {formStatus === 'success' ? (
                 <div className="flex flex-col items-center justify-center gap-4 bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[2.5rem] border-[3px] border-[#1C1C1C] shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[10px_10px_0px_0px_rgba(28,28,28,1)] w-full text-center h-full">
                   <div className="bg-[#C6F8E5] p-4 rounded-full border-[3px] border-[#1C1C1C] mb-2 animate-wiggle">
@@ -480,7 +486,6 @@ export default function App() {
                     <textarea required name="Bericht" rows="3" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all resize-none font-bold text-base md:text-lg box-border appearance-none" placeholder="Locatie? Dieetwensen?"></textarea>
                   </div>
 
-                  {/* Disable button and change text while submitting to prevent double-clicks! */}
                   <button type="submit" disabled={formStatus === 'submitting'} className="w-full min-w-0 max-w-full py-4 md:py-5 mt-2 rounded-full bg-[#C6F8E5] font-black text-lg md:text-xl uppercase tracking-widest flex items-center justify-center gap-2 border-[3px] border-[#1C1C1C] btn-fluid shadow-[0px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[6px_6px_0px_0px_rgba(28,28,28,1)] hover:bg-[#BDE0FE] hover:text-[#1C1C1C] box-border disabled:opacity-70 disabled:cursor-not-allowed">
                     {formStatus === 'submitting' ? 'Even geduld...' : 'Stuur Aanvraag'} <Flame size={20} />
                   </button>
@@ -535,7 +540,7 @@ export default function App() {
           </div>
           
           <p className="text-[#FFF4CB] text-xs md:text-sm uppercase tracking-widest font-black">
-            &copy; {new Date().getFullYear()} La Pizza di Sabi. Stay Cheesy.
+            &copy; {new Date().getFullYear()} La Pizza di Sabi. KVK 99346834.
           </p>
         </div>
       </footer>
