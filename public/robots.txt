@@ -1,0 +1,23 @@
+# Allow all normal visitors and Google/Bing search bots
+User-agent: *
+Allow: /
+
+# Block heavy AI Scrapers from eating bandwidth
+User-agent: GPTBot
+Disallow: /
+User-agent: ChatGPT-User
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+
+# Block aggressive SEO marketing bots
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: DotBot
+Disallow: /
