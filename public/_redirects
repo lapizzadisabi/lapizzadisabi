@@ -1,5 +1,5 @@
-# Block US Traffic
-/* /  404  Country=us
+# Block US Traffic (The exclamation mark FORCES the block!)
+/* /404.html  404!  Country=us
 
-# Keep React Routing working for everyone else (Standard Netlify SPA rule)
+# Keep React Routing working for everyone else
 /* /index.html  200
