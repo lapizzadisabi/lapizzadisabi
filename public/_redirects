@@ -1,5 +1,2 @@
-# Block US Traffic (The exclamation mark FORCES the block!)
-/* /404.html  404!  Country=us
-
-# Keep React Routing working for everyone else
+# Keep React Routing working
 /* /index.html  200
