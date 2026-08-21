@@ -160,6 +160,14 @@ export default function App() {
   // Google reviews when available, otherwise the ones typed into the CMS.
   const reviewList = google ? google.reviews : testimonials;
 
+  // Badge data: live Google if connected, otherwise whatever is typed in the CMS.
+  const cmsSummary = cmsData.reviewsSummary || {};
+  const summary = google
+    ? { rating: google.rating, total: google.total, mapsUri: google.mapsUri }
+    : (cmsSummary.rating && cmsSummary.total
+        ? { rating: Number(cmsSummary.rating), total: cmsSummary.total, mapsUri: cmsSummary.mapsUri }
+        : null);
+
   const faqs = [
     {
       q: "Vanaf hoeveel personen of pizza’s kan ik jullie boeken?",
@@ -417,17 +425,17 @@ export default function App() {
         <div className="max-w-7xl mx-auto w-full min-w-0">
           <h2 className="text-center text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter text-white" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Liefde</h2>
 
-          {google && (
+          {summary && (
             <div className="flex justify-center mb-10 md:mb-14">
-              <a href={google.mapsUri || '#'} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 md:gap-3 bg-white border-[3px] border-[#1C1C1C] rounded-full px-4 py-2 md:px-6 md:py-3 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] rotate-1 hover:-rotate-1 transition-transform max-w-full">
-                <span className="font-black text-xl md:text-2xl tracking-tighter text-[#1C1C1C]">{Number(google.rating).toFixed(1)}</span>
+              <a href={summary.mapsUri || '#'} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 md:gap-3 bg-white border-[3px] border-[#1C1C1C] rounded-full px-4 py-2 md:px-6 md:py-3 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] rotate-1 hover:-rotate-1 transition-transform max-w-full">
+                <span className="font-black text-xl md:text-2xl tracking-tighter text-[#1C1C1C]">{Number(summary.rating).toFixed(1)}</span>
                 <span className="flex gap-0.5 shrink-0">
                   {[...Array(5)].map((_, idx) => (
-                    <Star key={idx} className={`w-4 h-4 md:w-5 md:h-5 text-[#1C1C1C] stroke-[2px] ${idx < Math.round(google.rating) ? 'fill-[#FFAD87]' : 'fill-white'}`} />
+                    <Star key={idx} className={`w-4 h-4 md:w-5 md:h-5 text-[#1C1C1C] stroke-[2px] ${idx < Math.round(summary.rating) ? 'fill-[#FFAD87]' : 'fill-white'}`} />
                   ))}
                 </span>
                 <span className="font-black uppercase tracking-widest text-[10px] sm:text-xs md:text-sm text-[#1C1C1C] leading-tight text-left">
-                  {google.total} Google reviews
+                  {summary.total} Google reviews
                 </span>
               </a>
             </div>

@@ -74,14 +74,23 @@
       "poster": "/uploads/1000027145.jpg"
     }
   ],
+  "reviewsSummary": {
+    "rating": "",
+    "total": "",
+    "mapsUri": "https://maps.app.goo.gl/5r3Nq2e7RyWdTw7m6"
+  },
   "testimonials": [
     {
       "name": "Elena",
+      "rating": 5,
+      "when": "",
       "review": "We hebben een fantastisch verjaardagsfeest gehad dankzij Sabi! Niet alleen waren de pizza's waanzinnig lekker en vers, maar Sabi bracht ook een supergezellige, ontspannen sfeer met zich mee. Het was perfect geregeld en de ideale toevoeging aan mijn verjaardag. Echt een enorme aanrader!",
       "image": "/uploads/1743268108591.jpeg"
     },
     {
       "name": "Frits",
+      "rating": 5,
+      "when": "",
       "review": "La Pizza Di Sabi was de perfecte keuze voor het pensioenfeest van onze schoonmoeder! Sabi tovert met enorme passie waanzinnige pizza's uit de oven en zorgt met zijn vriendelijkheid voor een geweldige sfeer. Een absolute aanrader als je unieke catering zoekt. Sabi, ontzettend bedankt voor deze onvergetelijke ervaring!",
       "image": "/uploads/whatsapp-image-2026-03-07-at-13.47.08.jpeg"
     }

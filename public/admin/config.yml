@@ -62,13 +62,24 @@ collections:
               - {label: "Cover Foto (Zichtbaar voordat video speelt)", name: "poster", widget: "image"}
 
           # 6. REVIEWS
+          - label: "Google Score (balkje boven de reviews)"
+            name: "reviewsSummary"
+            widget: "object"
+            hint: "Laat Score of Aantal leeg om het balkje te verbergen."
+            fields:
+              - {label: "Gemiddelde score", name: "rating", widget: "string", required: false, hint: "Bijv: 4.9"}
+              - {label: "Aantal reviews", name: "total", widget: "string", required: false, hint: "Bijv: 27"}
+              - {label: "Link naar Google Maps", name: "mapsUri", widget: "string", required: false}
+
           - label: "Wat klanten zeggen (Reviews)"
             name: "testimonials"
             widget: "list"
             fields:
               - {label: "Naam Klant", name: "name", widget: "string"}
               - {label: "Review Tekst", name: "review", widget: "text"}
-              - {label: "Profielfoto Klant", name: "image", widget: "image"}
+              - {label: "Profielfoto Klant", name: "image", widget: "image", required: false}
+              - {label: "Aantal sterren", name: "rating", widget: "number", default: 5, min: 1, max: 5, required: false}
+              - {label: "Wanneer geplaatst", name: "when", widget: "string", required: false, hint: "Bijv: 2 maanden geleden"}
           
           # 4.5 MENU
           - label: "Het Menu (Pizza's)"
