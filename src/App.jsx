@@ -156,6 +156,7 @@ export default function App() {
   const reels = cmsData.reels || [];
   const galleryBase = cmsData.gallery || [];
   const menuItems = cmsData.menu || [];
+  const halalItems = menuItems.filter((p) => p.halal);
 
   // Google reviews when available, otherwise the ones typed into the CMS.
   const reviewList = google ? google.reviews : testimonials;
@@ -374,35 +375,38 @@ export default function App() {
         <div className="max-w-7xl mx-auto w-full relative z-30 min-w-0">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Het Menu</h2>
-
-            <div className="inline-flex items-center gap-2 md:gap-3 bg-[#C6F8E5] border-[3px] border-[#1C1C1C] rounded-full px-4 py-2 md:px-7 md:py-3 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] -rotate-1 hover:rotate-1 transition-transform max-w-full">
-              <Check size={22} className="shrink-0 text-[#1C1C1C] stroke-[3px]" />
-              <span className="font-black uppercase tracking-widest text-xs sm:text-sm md:text-lg text-[#1C1C1C] text-left leading-tight">
-                Gemarkeerde pizza&rsquo;s zijn ook <span className="text-[#1C1C1C] underline decoration-[#FFAD87] decoration-4 underline-offset-2">halal</span> verkrijgbaar
-              </span>
-            </div>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-5 mb-16 md:mb-24 w-full min-w-0">
+          <div className={`grid md:grid-cols-2 gap-5 ${halalItems.length ? 'mb-8 md:mb-10' : 'mb-16 md:mb-24'} w-full min-w-0`}>
             {menuItems.map((p, i) => (
               <div key={i} className={`flex items-center gap-4 md:gap-6 bg-white border-[3px] border-[#1C1C1C] p-3 md:p-4 rounded-2xl md:rounded-[2rem] shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] hover:-translate-y-1 transition-transform ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'} min-w-0`}>
                 <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-[3px] border-[#1C1C1C] shrink-0 overflow-hidden shadow-inner">
                   <img src={p.img} alt={p.n} loading="lazy" decoding="async" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div className="min-w-0">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#1C1C1C] truncate">{p.n}</h3>
-                    {p.halal && (
-                      <span className="shrink-0 bg-[#C6F8E5] border-[2px] border-[#1C1C1C] rounded-full px-2 py-0.5 text-[10px] md:text-xs font-black uppercase tracking-widest text-[#1C1C1C] shadow-[1px_1px_0px_0px_rgba(28,28,28,1)]">
-                        Halal
-                      </span>
-                    )}
-                  </div>
+                  <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#1C1C1C] truncate">{p.n}</h3>
                   <p className="font-bold mt-1 text-xs md:text-sm text-gray-600 leading-tight">{p.d}</p>
                 </div>
               </div>
             ))}
           </div>
+
+          {halalItems.length > 0 && (
+            <div className="flex justify-center mb-16 md:mb-24 w-full min-w-0">
+              <div className="bg-white border-[3px] border-[#1C1C1C] rounded-2xl md:rounded-[2rem] px-5 py-4 md:px-10 md:py-6 shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] -rotate-1 hover:rotate-0 transition-transform max-w-full">
+                <h3 className="text-xs md:text-sm font-black uppercase tracking-widest text-gray-600 text-center mb-3 md:mb-4">
+                  Deze pizza&rsquo;s zijn ook halal verkrijgbaar
+                </h3>
+                <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+                  {halalItems.map((p, i) => (
+                    <span key={i} className="bg-[#C6F8E5] border-[2px] border-[#1C1C1C] rounded-full px-3 py-1 md:px-4 md:py-1.5 text-xs md:text-sm font-black uppercase tracking-widest text-[#1C1C1C]">
+                      {p.n}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 w-full min-w-0">
             {galleryBase.slice(0, 4).map((photo, i) => (
