@@ -58,20 +58,28 @@
   ],
   "reels": [
     {
-      "video": "/uploads/vid_20260305_121716_030_bsl.mp4",
-      "poster": "/uploads/1000027133.jpg"
+      "video": "/uploads/reel-1.mp4",
+      "poster": "/uploads/reel-1.jpg"
     },
     {
-      "video": "/uploads/vid_20260305_121923_211_bsl.mp4",
-      "poster": "/uploads/1000027135.jpg"
+      "video": "/uploads/reel-2.mp4",
+      "poster": "/uploads/reel-2.jpg"
     },
     {
-      "video": "/uploads/vid_20260305_121947_847_bsl.mp4",
-      "poster": "/uploads/1000027143.jpg"
+      "video": "/uploads/reel-3.mp4",
+      "poster": "/uploads/reel-3.jpg"
     },
     {
-      "video": "/uploads/202603071308-1-.mp4",
-      "poster": "/uploads/1000027145.jpg"
+      "video": "/uploads/reel-4.mp4",
+      "poster": "/uploads/reel-4.jpg"
+    },
+    {
+      "video": "/uploads/reel-5.mp4",
+      "poster": "/uploads/reel-5.jpg"
+    },
+    {
+      "video": "/uploads/reel-6.mp4",
+      "poster": "/uploads/reel-6.jpg"
     }
   ],
   "reviewsSummary": {
