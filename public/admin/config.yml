@@ -76,5 +76,6 @@ collections:
             widget: "list"
             fields:
               - {label: "Naam Pizza", name: "n", widget: "string"}
+              - {label: "Halal verkrijgbaar?", name: "halal", widget: "boolean", default: false, required: false}
               - {label: "Ingrediënten", name: "d", widget: "string"}
               - {label: "Pizza Foto", name: "img", widget: "image"}

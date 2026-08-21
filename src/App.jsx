@@ -70,6 +70,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cmsData, setCmsData] = useState(null);
   const [formStatus, setFormStatus] = useState(null);
+  const [google, setGoogle] = useState(null);
 
   useEffect(() => {
     fetch('/content/data.json')
@@ -90,6 +91,15 @@ export default function App() {
           }
         });
       });
+  }, []);
+
+  useEffect(() => {
+    fetch('/.netlify/functions/reviews')
+      .then(res => (res.ok ? res.json() : null))
+      .then(data => {
+        if (data && data.configured && data.reviews && data.reviews.length) setGoogle(data);
+      })
+      .catch(() => { /* keep the CMS reviews */ });
   }, []);
 
   useEffect(() => {
@@ -146,6 +156,9 @@ export default function App() {
   const reels = cmsData.reels || [];
   const galleryBase = cmsData.gallery || [];
   const menuItems = cmsData.menu || [];
+
+  // Google reviews when available, otherwise the ones typed into the CMS.
+  const reviewList = google ? google.reviews : testimonials;
 
   const faqs = [
     {
@@ -357,7 +370,7 @@ export default function App() {
             <div className="inline-flex items-center gap-2 md:gap-3 bg-[#C6F8E5] border-[3px] border-[#1C1C1C] rounded-full px-4 py-2 md:px-7 md:py-3 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] -rotate-1 hover:rotate-1 transition-transform max-w-full">
               <Check size={22} className="shrink-0 text-[#1C1C1C] stroke-[3px]" />
               <span className="font-black uppercase tracking-widest text-xs sm:text-sm md:text-lg text-[#1C1C1C] text-left leading-tight">
-                Alle pizza&rsquo;s ook <span className="text-[#1C1C1C] underline decoration-[#FFAD87] decoration-4 underline-offset-2">halal</span> verkrijgbaar
+                Gemarkeerde pizza&rsquo;s zijn ook <span className="text-[#1C1C1C] underline decoration-[#FFAD87] decoration-4 underline-offset-2">halal</span> verkrijgbaar
               </span>
             </div>
           </div>
@@ -369,7 +382,14 @@ export default function App() {
                   <img src={p.img} alt={p.n} loading="lazy" decoding="async" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#1C1C1C] truncate">{p.n}</h3>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#1C1C1C] truncate">{p.n}</h3>
+                    {p.halal && (
+                      <span className="shrink-0 bg-[#C6F8E5] border-[2px] border-[#1C1C1C] rounded-full px-2 py-0.5 text-[10px] md:text-xs font-black uppercase tracking-widest text-[#1C1C1C] shadow-[1px_1px_0px_0px_rgba(28,28,28,1)]">
+                        Halal
+                      </span>
+                    )}
+                  </div>
                   <p className="font-bold mt-1 text-xs md:text-sm text-gray-600 leading-tight">{p.d}</p>
                 </div>
               </div>
@@ -395,24 +415,46 @@ export default function App() {
       {/* Trust Section */}
       <section className="pt-6 pb-24 md:pt-8 md:pb-32 bg-[#C6F8E5] px-4 md:px-6 relative z-10 -mt-1 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto w-full min-w-0">
-          <h2 className="text-center text-5xl md:text-7xl font-black uppercase mb-12 md:mb-16 tracking-tighter text-white" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Liefde</h2>
+          <h2 className="text-center text-5xl md:text-7xl font-black uppercase mb-4 tracking-tighter text-white" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Liefde</h2>
+
+          {google && (
+            <div className="flex justify-center mb-10 md:mb-14">
+              <a href={google.mapsUri || '#'} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 md:gap-3 bg-white border-[3px] border-[#1C1C1C] rounded-full px-4 py-2 md:px-6 md:py-3 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] rotate-1 hover:-rotate-1 transition-transform max-w-full">
+                <span className="font-black text-xl md:text-2xl tracking-tighter text-[#1C1C1C]">{Number(google.rating).toFixed(1)}</span>
+                <span className="flex gap-0.5 shrink-0">
+                  {[...Array(5)].map((_, idx) => (
+                    <Star key={idx} className={`w-4 h-4 md:w-5 md:h-5 text-[#1C1C1C] stroke-[2px] ${idx < Math.round(google.rating) ? 'fill-[#FFAD87]' : 'fill-white'}`} />
+                  ))}
+                </span>
+                <span className="font-black uppercase tracking-widest text-[10px] sm:text-xs md:text-sm text-[#1C1C1C] leading-tight text-left">
+                  {google.total} Google reviews
+                </span>
+              </a>
+            </div>
+          )}
+
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 w-full min-w-0">
-            {testimonials.map((review, i) => (
+            {reviewList.map((review, i) => (
               <div key={i} className="p-6 md:p-8 bg-white rounded-[2rem] md:rounded-[3rem] rounded-bl-none border-[3px] border-[#1C1C1C] shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[8px_8px_0px_0px_rgba(28,28,28,1)] hover:-translate-y-2 transition-transform relative min-w-0">
                 <div className="absolute -bottom-[3px] -left-[3px] w-6 h-6 md:w-8 md:h-8 bg-white border-b-[3px] border-l-[3px] border-[#1C1C1C] transform skew-x-[45deg] origin-top-left -z-10 shadow-[-2px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[-8px_8px_0px_0px_rgba(28,28,28,1)]"></div>
                 
                 <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 min-w-0">
-                  <img src={review.image} alt={review.name} loading="lazy" decoding="async" className="w-12 h-12 md:w-16 md:h-16 object-cover border-[3px] border-[#1C1C1C] rounded-full shrink-0" />
+                  {review.image && (
+                    <img src={review.image} alt={review.name} loading="lazy" decoding="async" referrerPolicy="no-referrer" onError={(e) => { e.target.style.display = 'none'; }} className="w-12 h-12 md:w-16 md:h-16 object-cover border-[3px] border-[#1C1C1C] rounded-full shrink-0" />
+                  )}
                   <div className="min-w-0">
                     <h4 className="text-lg md:text-xl font-black uppercase text-[#1C1C1C] truncate">{review.name}</h4>
                     <div className="flex gap-1 mt-0.5">
                       {[...Array(5)].map((_, idx) => (
-                        <Star key={idx} className="w-4 h-4 md:w-5 md:h-5 fill-[#FFAD87] text-[#1C1C1C] stroke-[2px]" />
+                        <Star key={idx} className={`w-4 h-4 md:w-5 md:h-5 text-[#1C1C1C] stroke-[2px] ${idx < Math.round(review.rating || 5) ? 'fill-[#FFAD87]' : 'fill-white'}`} />
                       ))}
                     </div>
+                    {review.when && (
+                      <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500 mt-1">{review.when}</p>
+                    )}
                   </div>
                 </div>
-                <p className="text-base md:text-xl font-bold text-gray-700 leading-tight">"{review.review}"</p>
+                <p className="text-base md:text-xl font-bold text-gray-700 leading-tight line-clamp-[10]">&ldquo;{review.review}&rdquo;</p>
               </div>
             ))}
           </div>

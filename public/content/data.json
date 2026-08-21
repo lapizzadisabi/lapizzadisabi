@@ -89,6 +89,7 @@
   "menu": [
     {
       "n": "Margherita",
+      "halal": true,
       "d": "Tomatensaus, Mozzarella, Parmigiano Reggiano, Basilicum",
       "img": "/uploads/dsc07515.jpg"
     },
@@ -99,11 +100,13 @@
     },
     {
       "n": "Tonijn",
+      "halal": true,
       "d": "Tomatensaus, Mozzarella, Tonijn, Uien, Basilicum, Citroensap",
       "img": "/uploads/dsc07714.jpg"
     },
     {
       "n": "Salami",
+      "halal": true,
       "d": "Tomatensaus, Mozzarella, Parmigiano Reggiano, Salami, Basilicum",
       "img": "/uploads/dsc07588.jpg"
     },
