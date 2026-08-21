@@ -268,6 +268,8 @@ export default function App() {
               <img 
                 src={hero.chefImage} 
                 alt="Chef Sabi" 
+                fetchPriority="high"
+                decoding="async"
                 className="w-56 h-72 md:w-72 md:h-96 object-cover rounded-2xl border-[3px] border-[#1C1C1C]" 
               />
             </div>
@@ -351,13 +353,20 @@ export default function App() {
         <div className="max-w-7xl mx-auto w-full relative z-30 min-w-0">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-4" style={{ textShadow: '3px 3px 0px #1C1C1C' }}>Het Menu</h2>
+
+            <div className="inline-flex items-center gap-2 md:gap-3 bg-[#C6F8E5] border-[3px] border-[#1C1C1C] rounded-full px-4 py-2 md:px-7 md:py-3 shadow-[2px_2px_0px_0px_rgba(28,28,28,1)] md:shadow-[4px_4px_0px_0px_rgba(28,28,28,1)] -rotate-1 hover:rotate-1 transition-transform max-w-full">
+              <Check size={22} className="shrink-0 text-[#1C1C1C] stroke-[3px]" />
+              <span className="font-black uppercase tracking-widest text-xs sm:text-sm md:text-lg text-[#1C1C1C] text-left leading-tight">
+                Alle pizza&rsquo;s ook <span className="text-[#1C1C1C] underline decoration-[#FFAD87] decoration-4 underline-offset-2">halal</span> verkrijgbaar
+              </span>
+            </div>
           </div>
           
           <div className="grid md:grid-cols-2 gap-5 mb-16 md:mb-24 w-full min-w-0">
             {menuItems.map((p, i) => (
               <div key={i} className={`flex items-center gap-4 md:gap-6 bg-white border-[3px] border-[#1C1C1C] p-3 md:p-4 rounded-2xl md:rounded-[2rem] shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] hover:-translate-y-1 transition-transform ${i % 2 === 0 ? '-rotate-1' : 'rotate-1'} min-w-0`}>
                 <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-[3px] border-[#1C1C1C] shrink-0 overflow-hidden shadow-inner">
-                  <img src={p.img} alt={p.n} className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
+                  <img src={p.img} alt={p.n} loading="lazy" decoding="async" className="w-full h-full object-cover hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-[#1C1C1C] truncate">{p.n}</h3>
@@ -372,7 +381,7 @@ export default function App() {
               <div key={i} className={`border-[3px] border-[#1C1C1C] rounded-2xl md:rounded-3xl shadow-[2px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[6px_6px_0px_0px_rgba(28,28,28,1)] overflow-hidden bg-white
                 ${i % 2 === 0 ? 'rotate-2 md:rotate-3 translate-y-2' : '-rotate-2'} hover:rotate-0 hover:scale-105 transition-all duration-300
               `}>
-                <img src={photo} className="w-full aspect-[4/5] object-cover" alt="Pizza Party" />
+                <img src={photo} loading="lazy" decoding="async" className="w-full aspect-[4/5] object-cover" alt="Pizza Party" />
               </div>
             ))}
           </div>
@@ -393,7 +402,7 @@ export default function App() {
                 <div className="absolute -bottom-[3px] -left-[3px] w-6 h-6 md:w-8 md:h-8 bg-white border-b-[3px] border-l-[3px] border-[#1C1C1C] transform skew-x-[45deg] origin-top-left -z-10 shadow-[-2px_4px_0px_0px_rgba(28,28,28,1)] md:shadow-[-8px_8px_0px_0px_rgba(28,28,28,1)]"></div>
                 
                 <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6 min-w-0">
-                  <img src={review.image} alt={review.name} className="w-12 h-12 md:w-16 md:h-16 object-cover border-[3px] border-[#1C1C1C] rounded-full shrink-0" />
+                  <img src={review.image} alt={review.name} loading="lazy" decoding="async" className="w-12 h-12 md:w-16 md:h-16 object-cover border-[3px] border-[#1C1C1C] rounded-full shrink-0" />
                   <div className="min-w-0">
                     <h4 className="text-lg md:text-xl font-black uppercase text-[#1C1C1C] truncate">{review.name}</h4>
                     <div className="flex gap-1 mt-0.5">
@@ -457,9 +466,16 @@ export default function App() {
                     <input required type="text" name="Naam" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Jouw naam" />
                   </div>
                   
-                  <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
-                    <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Email / Telefoon</label>
-                    <input required type="text" name="Contact" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="Hoe bereiken we je?" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full min-w-0 max-w-full">
+                    <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
+                      <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Email</label>
+                      <input required type="email" name="Email" autoComplete="email" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="jij@email.nl" />
+                    </div>
+
+                    <div className="flex flex-col gap-1.5 min-w-0 w-full max-w-full">
+                      <label className="text-xs md:text-sm font-black uppercase tracking-widest pl-2">Telefoon</label>
+                      <input required type="tel" name="Telefoon" autoComplete="tel" inputMode="tel" className="w-full min-w-0 max-w-full p-3.5 md:p-4 rounded-xl md:rounded-2xl border-[3px] border-[#1C1C1C] bg-[#FFF4CB] focus:bg-white focus:outline-none transition-all font-bold text-base md:text-lg box-border appearance-none" placeholder="06 12345678" />
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full min-w-0 max-w-full">
@@ -524,7 +540,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex flex-col items-center justify-center text-center w-full min-w-0">
           
           <div className="flex items-center gap-2 md:gap-3 mb-6 hover:scale-105 transition-transform cursor-pointer bg-white px-5 py-2 md:px-6 md:py-3 rounded-full border-[3px] border-[#FFAD87]" onClick={() => window.scrollTo(0,0)}>
-            <img src="/logo.png" alt="Logo" className="h-8 md:h-10 w-auto object-contain" onError={(e) => e.target.style.display='none'} />
+            <img src="/logo.png" alt="Logo" loading="lazy" decoding="async" className="h-8 md:h-10 w-auto object-contain" onError={(e) => e.target.style.display='none'} />
             <div className="text-xl md:text-2xl font-black uppercase tracking-tighter text-[#1C1C1C]">
               La Pizza <span className="text-[#FFAD87]">di Sabi</span>
             </div>
