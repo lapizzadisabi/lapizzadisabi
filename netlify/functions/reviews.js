@@ -70,7 +70,7 @@ export default async () => {
         image: r.reviewer?.profilePhotoUrl || null,
         rating: STARS[r.starRating] ?? 0,
         when: dutchAgo(r.createTime),
-        review: (r.comment || "").trim(),
+        review: pickText(r.comment, process.env.REVIEWS_LANGUAGE),
       }))
       .filter((r) => r.review.length > 0 && r.rating >= min)
       .slice(0, max);
@@ -118,6 +118,25 @@ async function discover(token) {
     }
   }
   return { accounts: accounts.map((a) => a.name), locations };
+}
+
+// The v4 API packs both versions into one field when a review was written in a
+// different language from the account's:
+//   "(Translated by Google) <translation>\n\n(Original)\n<original>"
+// There is no request parameter to switch this off, so we split it ourselves.
+// Reviews needing no translation arrive as plain text and pass straight through.
+function pickText(comment, prefer) {
+  const raw = (comment || "").trim();
+  if (!raw) return "";
+
+  const m = raw.match(/^\(Translated by Google\)\s*([\s\S]*?)\s*\(Original\)\s*([\s\S]*)$/);
+  if (!m) return raw;
+
+  const translated = m[1].trim();
+  const original = m[2].trim();
+
+  if (prefer === "translated") return translated || original;
+  return original || translated;
 }
 
 function dutchAgo(iso) {
